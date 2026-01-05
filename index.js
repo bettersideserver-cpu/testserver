@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
   res.send("This is Aman’s first Railway backend");
 });
+app.get("/about", (req, res) => {
+  res.send("This is Aman’s first Railway backend");
+});
 
 
 app.listen(PORT, () => {
