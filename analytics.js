@@ -6,7 +6,7 @@ const SUPABASE_URL =
     "https://tmjjjhbrvgafxovqawsw.supabase.co";
 
 const SUPABASE_KEY =
-    "https://tmjjjhbrvgafxovqawsw.supabase.co/rest/v1/visitor_events";
+    "sb_publishable_OWtuNVjShk_B8P19Qgz9MA_lUyv73yj";
 
 
 // ================================
