@@ -1,25 +1,24 @@
-/*
-    BETTERSIDE ANALYTICS DEMO
-*/
+// ================================
+// SUPABASE CONFIG
+// ================================
+
+const SUPABASE_URL =
+    "https://tmjjjhbrvgafxovqawsw.supabase.co";
+
+const SUPABASE_KEY =
+    "https://tmjjjhbrvgafxovqawsw.supabase.co/rest/v1/visitor_events";
 
 
-// --------------------------------------------------
-// GET URL PARAMETERS
-// --------------------------------------------------
+// ================================
+// VISITOR ID
+// ================================
 
-const params = new URLSearchParams(window.location.search);
-
-
-// --------------------------------------------------
-// CREATE / GET VISITOR ID
-// --------------------------------------------------
-
-let visitorId = localStorage.getItem("betterside_visitor_id");
+let visitorId =
+    localStorage.getItem("betterside_visitor_id");
 
 if (!visitorId) {
 
-    visitorId =
-        crypto.randomUUID();
+    visitorId = crypto.randomUUID();
 
     localStorage.setItem(
         "betterside_visitor_id",
@@ -28,18 +27,18 @@ if (!visitorId) {
 }
 
 
-// --------------------------------------------------
-// CREATE / GET SESSION ID
-// --------------------------------------------------
+// ================================
+// SESSION ID
+// ================================
 
-let sessionId = sessionStorage.getItem(
-    "betterside_session_id"
-);
+let sessionId =
+    sessionStorage.getItem(
+        "betterside_session_id"
+    );
 
 if (!sessionId) {
 
-    sessionId =
-        crypto.randomUUID();
+    sessionId = crypto.randomUUID();
 
     sessionStorage.setItem(
         "betterside_session_id",
@@ -48,27 +47,31 @@ if (!sessionId) {
 }
 
 
-// --------------------------------------------------
-// DETECT SOURCE
-// --------------------------------------------------
+// ================================
+// UTM DATA
+// ================================
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
 const source =
-    params.get("utm_source")
-    || document.referrer
-    || "direct";
+    params.get("utm_source") ||
+    "direct";
 
 const medium =
-    params.get("utm_medium")
-    || "none";
+    params.get("utm_medium") ||
+    "none";
 
 const campaign =
-    params.get("utm_campaign")
-    || "none";
+    params.get("utm_campaign") ||
+    "none";
 
 
-// --------------------------------------------------
+// ================================
 // DEVICE
-// --------------------------------------------------
+// ================================
 
 function getDevice() {
 
@@ -85,110 +88,149 @@ function getDevice() {
 }
 
 
-// --------------------------------------------------
-// BASIC VISITOR DATA
-// --------------------------------------------------
+// ================================
+// SEND EVENT TO SUPABASE
+// ================================
 
-const visitorData = {
-
-    visitorId,
-
-    sessionId,
-
-    timestamp:
-        new Date().toISOString(),
-
-    source,
-
-    medium,
-
-    campaign,
-
-    referrer:
-        document.referrer || "Direct",
-
-    page:
-        window.location.pathname,
-
-    device:
-        getDevice(),
-
-    browser:
-        navigator.userAgent
-
-};
-
-
-// --------------------------------------------------
-// STORE EVENT LOCALLY
-// --------------------------------------------------
-
-function saveEvent(event) {
-
-    let events =
-        JSON.parse(
-            localStorage.getItem(
-                "betterside_events"
-            )
-        ) || [];
-
-    events.push(event);
-
-    localStorage.setItem(
-        "betterside_events",
-        JSON.stringify(events)
-    );
-}
-
-
-// --------------------------------------------------
-// TRACK EVENT
-// --------------------------------------------------
-
-function trackEvent(
+async function trackEvent(
     eventName,
     properties = {}
 ) {
 
-    const event = {
+    const data = {
 
-        ...visitorData,
+        visitor_id:
+            visitorId,
+
+        session_id:
+            sessionId,
+
+        source:
+            source,
+
+        medium:
+            medium,
+
+        campaign:
+            campaign,
+
+        referrer:
+            document.referrer ||
+            "Direct",
+
+        device:
+            getDevice(),
+
+        page:
+            window.location.pathname,
 
         event:
             eventName,
 
-        properties
+        project:
+            properties.project ||
+            null,
+
+        floor:
+            properties.floor ||
+            null,
+
+        unit:
+            properties.unit ||
+            null
 
     };
 
-    saveEvent(event);
 
     console.log(
-        "BetterSide Event:",
-        event
+        "Sending analytics:",
+        data
     );
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${SUPABASE_URL}/rest/v1/visitor_events`,
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            `Bearer ${SUPABASE_KEY}`,
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Prefer":
+                            "return=minimal"
+
+                    },
+
+                    body:
+                        JSON.stringify(data)
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const error =
+                await response.text();
+
+            console.error(
+                "Supabase error:",
+                error
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "✅ Analytics saved"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Analytics failed:",
+            error
+        );
+
+    }
+
 }
 
 
-// --------------------------------------------------
-// INITIAL PAGE VIEW
-// --------------------------------------------------
+// ================================
+// PAGE VIEW
+// ================================
 
 trackEvent(
     "page_view"
 );
 
 
-// --------------------------------------------------
+// ================================
 // PROJECT
-// --------------------------------------------------
+// ================================
 
 function openProject(project) {
 
     trackEvent(
         "project_opened",
         {
-            project
+            project: project
         }
     );
 
@@ -198,19 +240,22 @@ function openProject(project) {
 }
 
 
-// --------------------------------------------------
+// ================================
 // FLOOR
-// --------------------------------------------------
+// ================================
 
 function selectFloor(floor) {
 
     trackEvent(
         "floor_selected",
         {
+
             project:
                 "MDB Lutyens",
 
-            floor
+            floor:
+                floor
+
         }
     );
 
@@ -220,22 +265,25 @@ function selectFloor(floor) {
 }
 
 
-// --------------------------------------------------
+// ================================
 // UNIT
-// --------------------------------------------------
+// ================================
 
 function selectUnit(unit) {
 
     trackEvent(
         "unit_selected",
         {
+
             project:
                 "MDB Lutyens",
 
             floor:
                 "5",
 
-            unit
+            unit:
+                unit
+
         }
     );
 
