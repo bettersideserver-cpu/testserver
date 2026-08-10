@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BetterSide Analytics Demo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            Better<span>Side</span>
+        </div>
+
+        <a href="analytics.html" class="analytics-link">
+            Analytics
+        </a>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    REAL ESTATE EXPERIENCE
+                </p>
+
+                <h1>
+                    Discover your<br>
+                    <span>future home.</span>
+                </h1>
+
+                <p class="description">
+                    Explore our interactive property experience
+                    and discover available apartments, floors and units.
+                </p>
+
+                <div class="buttons">
+
+                    <button class="primary-btn" onclick="trackEvent('project_opened', {
+                        project: 'MDB Lutyens'
+                    })">
+                        Explore MDB Lutyens
+                    </button>
+
+                    <button class="secondary-btn" onclick="trackEvent('contact_clicked', {
+                        project: 'MDB Lutyens'
+                    })">
+                        Contact Us
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="projects">
+
+            <h2>Featured Projects</h2>
+
+            <div class="project-grid">
+
+                <div class="project-card">
+
+                    <div class="project-image">
+                        MDB
+                    </div>
+
+                    <h3>MDB Lutyens</h3>
+
+                    <p>
+                        Luxury residences with
+                        contemporary architecture.
+                    </p>
+
+                    <button onclick="openProject('MDB Lutyens')">
+                        View Project
+                    </button>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-image">
+                        CM
+                    </div>
+
+                    <h3>CM Infinia</h3>
+
+                    <p>
+                        Premium modern living
+                        in the heart of the city.
+                    </p>
+
+                    <button onclick="openProject('CM Infinia')">
+                        View Project
+                    </button>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-image">
+                        AS
+                    </div>
+
+                    <h3>Ananta Street</h3>
+
+                    <p>
+                        Designed for modern
+                        urban lifestyles.
+                    </p>
+
+                    <button onclick="openProject('Ananta Street')">
+                        View Project
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="floor-section">
+
+            <h2>Interactive Floor Explorer</h2>
+
+            <p>
+                Select a floor to simulate visitor interaction.
+            </p>
+
+            <div class="floors">
+
+                <button onclick="selectFloor(1)">
+                    Floor 1
+                </button>
+
+                <button onclick="selectFloor(2)">
+                    Floor 2
+                </button>
+
+                <button onclick="selectFloor(3)">
+                    Floor 3
+                </button>
+
+                <button onclick="selectFloor(4)">
+                    Floor 4
+                </button>
+
+                <button onclick="selectFloor(5)">
+                    Floor 5
+                </button>
+
+                <button onclick="selectFloor(6)">
+                    Floor 6
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="unit-section">
+
+            <h2>Available Units</h2>
+
+            <div class="units">
+
+                <button onclick="selectUnit('501')">
+                    Unit 501
+                </button>
+
+                <button onclick="selectUnit('502')">
+                    Unit 502
+                </button>
+
+                <button onclick="selectUnit('503')">
+                    Unit 503
+                </button>
+
+                <button onclick="selectUnit('504')">
+                    Unit 504
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            BetterSide Analytics Demo
+        </p>
+
+    </footer>
+
+
+    <script src="analytics.js"></script>
+
+</body>
+
+</html>
