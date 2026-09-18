@@ -567,6 +567,103 @@
             stroke-width: var(--hh-off-stroke-width, 4px) !important;
         }
     </style>
+<style>
+
+/* FINAL MOBILE: CENTER IMAGE HOLDER AND SVG IN THE ACTUAL BROWSER VIEWPORT */
+@media (max-width: 600px) {
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: var(--mobile-vh, 100svh) !important;
+    min-height: var(--mobile-vh, 100svh) !important;
+    max-height: var(--mobile-vh, 100svh) !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    top: var(--mobile-vv-top, 0px) !important;
+    left: var(--mobile-vv-left, 0px) !important;
+    right: auto !important;
+    bottom: auto !important;
+    touch-action: none !important;
+  }
+
+  .lobby-top {
+    position: fixed !important;
+    top: var(--mobile-vv-top, 0px) !important;
+    left: var(--mobile-vv-left, 0px) !important;
+    width: var(--mobile-vw, 100vw) !important;
+    height: var(--mobile-vh, 100svh) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: block !important;
+    transform: none !important;
+    transform-origin: center center !important;
+    touch-action: none !important;
+  }
+
+  .content-wrapper {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  /* IMPORTANT: image and SVG now share the EXACT same viewport box and crop */
+  .content-wrapper img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: 50% 50% !important;
+    transform: none !important;
+  }
+
+  .Cutout {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .Cutout svg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+</style>
 </head>
 
 <body>
@@ -1118,6 +1215,35 @@
 
     <script src="JS/HeroHomesFloorStatus.js"></script>
     <script src="available-toggle.js?v=3"></script>
+
+<script>
+/* FINAL MOBILE VIEWPORT CENTER LOCK
+   Uses the browser's visual viewport so Safari/Chrome toolbar changes cannot
+   push the image holder away from the center of the visible browser area. */
+(function () {
+  function setMobileViewport() {
+    if (window.innerWidth > 600) return;
+    var vv = window.visualViewport;
+    var w = vv ? vv.width : window.innerWidth;
+    var h = vv ? vv.height : window.innerHeight;
+    var top = vv ? vv.offsetTop : 0;
+    var left = vv ? vv.offsetLeft : 0;
+    var root = document.documentElement;
+    root.style.setProperty('--mobile-vw', w + 'px');
+    root.style.setProperty('--mobile-vh', h + 'px');
+    root.style.setProperty('--mobile-vv-top', top + 'px');
+    root.style.setProperty('--mobile-vv-left', left + 'px');
+  }
+  setMobileViewport();
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setMobileViewport, {passive:true});
+    window.visualViewport.addEventListener('scroll', setMobileViewport, {passive:true});
+  }
+  window.addEventListener('resize', setMobileViewport, {passive:true});
+  window.addEventListener('orientationchange', function () { setTimeout(setMobileViewport, 100); }, {passive:true});
+})();
+</script>
+
 </body>
 
 </html>
