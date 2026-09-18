@@ -96,77 +96,65 @@
             pointer-events: none;
         }
 
-        /* ── MOBILE: FIXED VIEWPORT / NO VERTICAL MOVEMENT ── */
+        /* ── MOBILE ── */
         @media (max-width: 600px) {
-            html, body {
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-                height: 100svh !important;
-                min-height: 100svh !important;
-                max-height: 100svh !important;
+
+            html,
+            body {
                 overflow: hidden !important;
+                width: 100vw !important;
+                height: 100dvh !important;
                 position: fixed !important;
-                inset: 0 !important;
-                overscroll-behavior: none !important;
+                top: 0 !important;
+                left: 0 !important;
                 touch-action: none !important;
+                overscroll-behavior: none !important;
             }
 
             .lobby-top {
-                position: fixed !important;
-                inset: 0 !important;
-                width: 100% !important;
-                height: 100svh !important;
-                min-height: 100svh !important;
-                max-height: 100svh !important;
-                margin: 0 !important;
-                padding: 0 !important;
                 overflow: hidden !important;
-                display: block !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100dvw !important;
+                height: 100dvh !important;
                 transform: none !important;
+                background-color: #070707;
                 touch-action: none !important;
                 overscroll-behavior: none !important;
             }
 
-            .content-wrapper {
-                position: fixed !important;
-                inset: 0 !important;
-                width: 100% !important;
-                height: 100svh !important;
-                min-height: 100svh !important;
-                max-height: 100svh !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow: hidden !important;
-                transform: none !important;
+            .lobby-top.dragging {
+                cursor: grabbing;
             }
 
-            .content-wrapper img {
+            .content-wrapper {
                 position: absolute !important;
-                inset: 0 !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
+            }
+
+
+            .content-wrapper img {
                 display: block !important;
                 width: 100% !important;
                 height: 100% !important;
-                min-width: 100% !important;
-                min-height: 100% !important;
-                max-width: none !important;
-                max-height: none !important;
                 object-fit: cover !important;
                 object-position: center center !important;
-                margin: 0 !important;
-                padding: 0 !important;
                 transform: none !important;
             }
 
+            /* SVG locked inside content-wrapper, moved up via translateY */
+
             .Cutout {
-                position: fixed !important;
-                inset: 0 !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
                 width: 100% !important;
-                height: 100svh !important;
-                min-height: 100svh !important;
-                max-height: 100svh !important;
-                margin: 0 !important;
-                padding: 0 !important;
+                height: 100% !important;
                 transform: none !important;
                 overflow: hidden !important;
                 pointer-events: none;
@@ -175,14 +163,13 @@
             .Cutout svg {
                 position: absolute !important;
                 inset: 0 !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
                 width: 100% !important;
                 height: 100% !important;
-                min-width: 100% !important;
-                min-height: 100% !important;
                 max-width: none !important;
                 max-height: none !important;
-                margin: 0 !important;
-                transform: none !important;
             }
         }
 
@@ -511,52 +498,87 @@
             cursor: pointer;
         }
     
-        /* MOBILE: keep the floor-image holder mathematically centered */
-        @media (max-width: 600px) {
-            .lobby-top {
-                position: fixed !important;
-                top: 50% !important;
-                left: 50% !important;
-                width: 100vw !important;
-                height: 100svh !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow: hidden !important;
-                transform: translate(-50%, -50%) !important;
-                display: block !important;
-            }
+/* MOBILE FINAL FIX: rotate and center the entire floor-plan front scene.
+   The image and SVG stay in the same coordinate system, so they cannot separate. */
+@media (max-width: 600px) and (orientation: portrait) {
+  html, body {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    inset: 0 !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+  }
 
-            .content-wrapper {
-                position: absolute !important;
-                top: 50% !important;
-                left: 50% !important;
-                width: auto !important;
-                height: 100svh !important;
-                min-height: 100svh !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                transform: translate(-50%, -50%) !important;
-                overflow: visible !important;
-            }
+  .lobby-top {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 100svh !important;
+    height: 100svw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+    transform-origin: center center !important;
+    display: block !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+  }
 
-            .content-wrapper img {
-                position: relative !important;
-                display: block !important;
-                width: auto !important;
-                height: 100svh !important;
-                min-width: 0 !important;
-                min-height: 100svh !important;
-                max-width: none !important;
-                max-height: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                object-fit: contain !important;
-                object-position: center center !important;
-                transform: none !important;
-            }
-        }
+  .content-wrapper {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
 
-    </style>
+  .content-wrapper img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: none !important;
+  }
+
+  .Cutout {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+
+  .Cutout svg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+</style>
     <link rel="stylesheet" href="available-toggle.css">
     <style>
         /* HH OFF SVG HOVER OVERRIDE */
@@ -733,112 +755,17 @@
                 overscroll-behavior: none;
             }
 
+            /* Prevent unwanted page scrolling */
             body {
-                overflow: hidden !important;
+                overflow-x: hidden;
             }
 
+            /* Keep the background from responding to touch gestures */
             .lobby-top {
                 touch-action: none !important;
             }
         }
     </style>
-<style>
-
-/* FINAL MOBILE: CENTER IMAGE HOLDER AND SVG IN THE ACTUAL BROWSER VIEWPORT */
-@media (max-width: 600px) {
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    height: var(--mobile-vh, 100svh) !important;
-    min-height: var(--mobile-vh, 100svh) !important;
-    max-height: var(--mobile-vh, 100svh) !important;
-    overflow: hidden !important;
-    position: fixed !important;
-    top: var(--mobile-vv-top, 0px) !important;
-    left: var(--mobile-vv-left, 0px) !important;
-    right: auto !important;
-    bottom: auto !important;
-    touch-action: none !important;
-  }
-
-  .lobby-top {
-    position: fixed !important;
-    top: var(--mobile-vv-top, 0px) !important;
-    left: var(--mobile-vv-left, 0px) !important;
-    width: var(--mobile-vw, 100vw) !important;
-    height: var(--mobile-vh, 100svh) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    display: block !important;
-    transform: none !important;
-    transform-origin: center center !important;
-    touch-action: none !important;
-  }
-
-  .content-wrapper {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    transform: none !important;
-  }
-
-  /* IMPORTANT: image and SVG now share the EXACT same viewport box and crop */
-  .content-wrapper img {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-    transform: none !important;
-  }
-
-  .Cutout {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    transform: none !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-  }
-
-  .Cutout svg {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 !important;
-    transform: none !important;
-  }
-}
-
-</style>
 </head>
 
 <body>
@@ -1055,7 +982,7 @@
             document.documentElement.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
-            document.body.style.height = '100svh';
+            document.body.style.height = '100%';
             document.body.style.top = '0';
             document.body.style.left = '0';
 
@@ -1353,35 +1280,6 @@
 
     <script src="JS/HeroHomesFloorStatus.js"></script>
     <script src="available-toggle.js?v=3"></script>
-
-<script>
-/* FINAL MOBILE VIEWPORT CENTER LOCK
-   Uses the browser's visual viewport so Safari/Chrome toolbar changes cannot
-   push the image holder away from the center of the visible browser area. */
-(function () {
-  function setMobileViewport() {
-    if (window.innerWidth > 600) return;
-    var vv = window.visualViewport;
-    var w = vv ? vv.width : window.innerWidth;
-    var h = vv ? vv.height : window.innerHeight;
-    var top = vv ? vv.offsetTop : 0;
-    var left = vv ? vv.offsetLeft : 0;
-    var root = document.documentElement;
-    root.style.setProperty('--mobile-vw', w + 'px');
-    root.style.setProperty('--mobile-vh', h + 'px');
-    root.style.setProperty('--mobile-vv-top', top + 'px');
-    root.style.setProperty('--mobile-vv-left', left + 'px');
-  }
-  setMobileViewport();
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', setMobileViewport, {passive:true});
-    window.visualViewport.addEventListener('scroll', setMobileViewport, {passive:true});
-  }
-  window.addEventListener('resize', setMobileViewport, {passive:true});
-  window.addEventListener('orientationchange', function () { setTimeout(setMobileViewport, 100); }, {passive:true});
-})();
-</script>
-
 </body>
 
 </html>
