@@ -510,6 +510,52 @@
         .balcony-svg-link {
             cursor: pointer;
         }
+    
+        /* MOBILE: keep the floor-image holder mathematically centered */
+        @media (max-width: 600px) {
+            .lobby-top {
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: 100vw !important;
+                height: 100svh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                transform: translate(-50%, -50%) !important;
+                display: block !important;
+            }
+
+            .content-wrapper {
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: auto !important;
+                height: 100svh !important;
+                min-height: 100svh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                transform: translate(-50%, -50%) !important;
+                overflow: visible !important;
+            }
+
+            .content-wrapper img {
+                position: relative !important;
+                display: block !important;
+                width: auto !important;
+                height: 100svh !important;
+                min-width: 0 !important;
+                min-height: 100svh !important;
+                max-width: none !important;
+                max-height: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                object-fit: contain !important;
+                object-position: center center !important;
+                transform: none !important;
+            }
+        }
+
     </style>
     <link rel="stylesheet" href="available-toggle.css">
     <style>
