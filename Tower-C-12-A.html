@@ -584,6 +584,73 @@
             stroke-width: var(--hh-off-stroke-width, 4px) !important;
         }
     </style>
+
+    <style id="mobile-image-svg-alignment-fix">
+        /* MOBILE ONLY: image and SVG use the exact same 3840 x 5830 frame. */
+        @media (max-width: 600px) {
+            .lobby-top {
+                position: fixed !important;
+                inset: 0 !important;
+                width: 100vw !important;
+                height: 100dvh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                transform: none !important;
+            }
+
+            .content-wrapper {
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: max(100vw, calc(100dvh * 3840 / 5830)) !important;
+                height: max(100dvh, calc(100vw * 5830 / 3840)) !important;
+                margin: 0 0 0 -50% !important;
+                transform: translateX(0) !important;
+                overflow: hidden !important;
+                will-change: transform !important;
+            }
+
+            .content-wrapper img {
+                position: absolute !important;
+                inset: 0 !important;
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: none !important;
+                max-height: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                object-fit: fill !important;
+                object-position: center !important;
+                transform: none !important;
+            }
+
+            .Cutout {
+                position: absolute !important;
+                inset: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                margin: 0 !important;
+                transform: none !important;
+                overflow: hidden !important;
+                pointer-events: none;
+            }
+
+            .Cutout svg {
+                position: absolute !important;
+                inset: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                min-width: 0 !important;
+                min-height: 0 !important;
+                max-width: none !important;
+                max-height: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -832,8 +899,10 @@
             function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
 
             function applyTransform() {
-                const minX = -(getImgWidth() - window.innerWidth);
-                translateX = clamp(translateX, minX, 0);
+                const overflowX = Math.max(0, getImgWidth() - window.innerWidth);
+                const minX = -(overflowX / 2);
+                const maxX = overflowX / 2;
+                translateX = clamp(translateX, minX, maxX);
                 wrapper.style.transform = `translateX(${translateX}px)`;
             }
 
@@ -876,7 +945,7 @@
 
             // Init: start centered
             window.addEventListener('load', () => {
-                translateX = -((getImgWidth() - window.innerWidth) / 2);
+                translateX = 0;
                 applyTransform();
             });
         })();
