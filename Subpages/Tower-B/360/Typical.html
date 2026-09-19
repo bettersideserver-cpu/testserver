@@ -2544,30 +2544,54 @@ addHotspot("bathroom_1", "room_1", 210, -9, "Guest Room");
             if (oc && oc.includes("'" + startRoom + "'")) p.classList.add('active');
         });
 // ── Room navigation history ──
+// =========================================
+// ROOM HISTORY + PAGE HISTORY
+// =========================================
+
 let roomHistory = [startRoom];
 let isGoingBack = false;
 
-document.getElementById("backBtn").addEventListener("click", () => {
+document.getElementById("backBtn").addEventListener("click", function (e) {
 
-    if (roomHistory.length <= 1) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // -----------------------------------------
+    // STEP 1: Go back through room history
+    // -----------------------------------------
+
+    if (roomHistory.length > 1) {
+
+        // Remove current room
+        roomHistory.pop();
+
+        // Get previous room
+        const previousRoom =
+            roomHistory[roomHistory.length - 1];
+
+        if (!previousRoom || !rooms[previousRoom]) {
+            return;
+        }
+
+        // Tell goToRoom() this is a BACK navigation
+        isGoingBack = true;
+
+        goToRoom(previousRoom);
+
+        // Reset after navigation has been triggered
+        setTimeout(() => {
+            isGoingBack = false;
+        }, 350);
+
         return;
     }
 
-    // Remove current room
-    roomHistory.pop();
+    // -----------------------------------------
+    // STEP 2: No room history left
+    // Go back to the actual previous page
+    // -----------------------------------------
 
-    const previousRoom =
-        roomHistory[roomHistory.length - 1];
-
-    if (!previousRoom || !rooms[previousRoom]) {
-        return;
-    }
-
-    isGoingBack = true;
-
-    goToRoom(previousRoom);
-
-    isGoingBack = false;
+    window.history.back();
 });
 </script>
 

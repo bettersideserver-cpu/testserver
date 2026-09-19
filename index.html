@@ -3494,20 +3494,342 @@
                 transform-origin: center center !important;
             }
         }
+        /* =========================================
+   NEARBY ESSENTIALS BUTTON
+   ========================================= */
+
+.nearby-essentials-btn {
+    position: fixed;
+    left: 238px;
+    bottom: 24px;
+    z-index: 10002;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 13px 20px;
+
+    /* NORMAL STATE — WHITE */
+    background: #faf9f8;
+    color: #0A2B21;
+
+    border: 1px solid rgba(192, 57, 43, 0.45);
+
+    /* MORE ROUNDED */
+    border-radius: 999px;
+
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 20px rgba(10, 42, 32, 0.10);
+
+    transition:
+        all 0.35s var(--ease-out);
+}
+
+
+/* ICON */
+.nearby-essentials-btn svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #C0392B;
+    transition: all 0.35s var(--ease-out);
+}
+
+
+/* =========================================
+   HOVER — RED
+   ========================================= */
+
+.nearby-essentials-btn:hover {
+    background: #C0392B;
+    border-color: #C0392B;
+
+    color: #FBF7EC;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 28px rgba(192, 57, 43, 0.28);
+}
+
+
+/* ICON ALSO BECOMES WHITE */
+.nearby-essentials-btn:hover svg {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+
+/* CLICK */
+.nearby-essentials-btn:active {
+    transform: translateY(0) scale(0.97);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .nearby-essentials-btn {
+        left: 148px;
+        bottom: 16px;
+
+        min-height: 50px;
+        padding: 13px 17px;
+
+        font-size: 10px;
+        letter-spacing: 1.4px;
+
+        border-radius: 999px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .nearby-essentials-btn {
+        left: 130px;
+
+        min-height: 46px;
+        padding: 0 14px;
+
+        font-size: 9px;
+        letter-spacing: 1px;
+
+        border-radius: 999px;
+    }
+}
+
+/* =========================================
+   360° SIDE BUTTONS
+   ========================================= */
+
+.side-360-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 10001;
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* IMAGE */
+.side-360-btn img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+
+    border-radius: 8px;   /* small corner radius */
+
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.18));
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* LEFT BUTTON */
+.side-360-left {
+    left: 184px;
+}
+
+
+/* RIGHT BUTTON */
+.side-360-right {
+    right: 184px;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.side-360-btn:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+.side-360-btn:hover img {
+    filter: drop-shadow(0 7px 18px rgba(192, 57, 43, 0.30));
+}
+
+
+/* =========================================
+   TOOLTIP
+   ========================================= */
+
+.side-360-btn::after {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 9px 14px;
+
+    background: #C0392B;
+    color: #FBF7EC;
+
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    border-radius: 6px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
+    pointer-events: none;
+
+    box-shadow: 0 5px 18px rgba(192, 57, 43, 0.22);
+
+    content: "";
+}
+
+
+/* LEFT → tooltip appears on RIGHT */
+.side-360-left::after {
+    content: "Left View";
+
+    left: calc(100% + 12px);
+
+    transform: translateY(-50%) translateX(-5px);
+}
+
+
+/* LEFT HOVER */
+.side-360-left:hover::after {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* RIGHT → tooltip appears on LEFT */
+.side-360-right::after {
+    content: "Right View";
+
+    right: calc(100% + 12px);
+
+    transform: translateY(-50%) translateX(5px);
+}
+
+
+/* RIGHT HOVER */
+.side-360-right:hover::after {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .side-360-btn {
+        width: 52px;
+        height: 52px;
+    }
+
+    .side-360-left {
+        left: 25px;
+    }
+
+    .side-360-right {
+        right: 25px;
+    }
+}
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .side-360-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .side-360-left {
+        left: 7px;
+    }
+
+    .side-360-right {
+        right: 7px;
+    }
+}
+
     </style>
 </head>
 
 <body>
+
+    <!-- 360° SIDE BUTTONS -->
+
+<a href="https://example.com/360-left"
+   class="side-360-btn side-360-left">
+    <img src="images/360_img.png" alt="360 View">
+</a>
+
+<a href="https://example.com/360-right"
+   class="side-360-btn side-360-right">
+    <img src="images/360_img.png" alt="360 View">
+</a>
     <!-- ════ EXPLORE SCREEN ════ -->
     <!-- Replace "YOUR_MUSIC_FILE.mp3" with your actual music path -->
-    <audio id="explore-audio" loop preload="auto">
-        <source src="bg.mp3" type="audio/mpeg"> <!-- Replace this path with your mp3 -->
-    </audio>
+    <!-- <audio id="explore-audio" loop preload="auto">
+        <source src="bg.mp3" type="audio/mpeg"> 
+    </audio> -->
 
-    <div id="explore-screen">
+    <!-- <div id="explore-screen">
         <div class="explore-bg"></div>
 
-        <!-- Top-right badge -->
+     
         <div class="explore-badge">
             <div class="explore-badge-label">Chandigarh · Lutyens' Zone</div>
             <div class="explore-badge-name">Hero Homes</div>
@@ -3530,10 +3852,10 @@
                 Sound On
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Music toggle button -->
-    <button id="music-toggle" title="Toggle Music">
+    <!-- <button id="music-toggle" title="Toggle Music">
         <svg id="music-icon-on" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"
             stroke-linejoin="round">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
@@ -3547,7 +3869,7 @@
             <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
         <span id="music-label">Mute</span>
-    </button>
+    </button> -->
 
     <script>
         function dismissExplore() {
@@ -3629,10 +3951,10 @@
 
 
     <!-- Splash -->
-    <div id="splash" class="splash" aria-live="polite" role="status">
+    <!-- <div id="splash" class="splash" aria-live="polite" role="status">
         <div class="splash__backdrop"></div>
 
-    </div>
+    </div> -->
 
     <!-- UI Hint -->
     <div id="ui-hint" class="ui-hint" aria-live="polite" role="status">
@@ -3862,7 +4184,31 @@
         </svg>
         <span>Current Status</span>
     </button>
+<a
+    href="https://example.com/nearby-essentials"
+    class="nearby-essentials-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+            d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <circle
+            cx="12"
+            cy="9"
+            r="2.4"
+            stroke="currentColor"
+            stroke-width="1.8"
+        />
+    </svg>
 
+    <span>Nearby Essentials</span>
+</a>
     <!-- Enquiry Button -->
     <button class="enquiry-btn" id="enquiryBtn">Enquiry</button>
 

@@ -2576,29 +2576,55 @@ updateBalconyControls(startRoom);
         });
 
     // ── Room navigation history ──
+// =========================================
+// ROOM HISTORY + PAGE HISTORY
+// =========================================
+
 let roomHistory = [startRoom];
 let isGoingBack = false;
 
-document.getElementById("backBtn").addEventListener("click", () => {
+document.getElementById("backBtn").addEventListener("click", function (e) {
 
-    // Nothing to go back to
-    if (roomHistory.length <= 1) return;
+    e.preventDefault();
+    e.stopPropagation();
 
-    // Remove current room
-    roomHistory.pop();
+    // -----------------------------------------
+    // STEP 1: Go back through room history
+    // -----------------------------------------
 
-    const previousRoom = roomHistory[roomHistory.length - 1];
+    if (roomHistory.length > 1) {
 
-    if (!previousRoom || !rooms[previousRoom]) return;
+        // Remove current room
+        roomHistory.pop();
 
-    isGoingBack = true;
+        // Get previous room
+        const previousRoom =
+            roomHistory[roomHistory.length - 1];
 
-    // Go to previous room
-    goToRoom(previousRoom);
+        if (!previousRoom || !rooms[previousRoom]) {
+            return;
+        }
 
-    isGoingBack = false;
+        // Tell goToRoom() this is a BACK navigation
+        isGoingBack = true;
+
+        goToRoom(previousRoom);
+
+        // Reset after navigation has been triggered
+        setTimeout(() => {
+            isGoingBack = false;
+        }, 350);
+
+        return;
+    }
+
+    // -----------------------------------------
+    // STEP 2: No room history left
+    // Go back to the actual previous page
+    // -----------------------------------------
+
+    window.history.back();
 });
-
         // Bottom room navigation arrows
         const tourNav = document.getElementById('tourNav');
         const scrollArrow = document.getElementById('scrollArrow');
