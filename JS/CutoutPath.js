@@ -1,48 +1,71 @@
-// Hero Homes floor navigation: use the displayed floor name first.
-(function () {
-  const paths = document.querySelectorAll(".Cutout path[data-link]");
+// const paths = document.querySelectorAll('.Cutout path');
 
-  paths.forEach((path) => {
-    path.style.pointerEvents = "all";
-    path.style.cursor = "pointer";
+// paths.forEach(path => {
+//     const link = path.getAttribute('data-link');
 
-    path.addEventListener("click", () => {
-      const name = path.getAttribute("data-name") || "";
-      const link = path.getAttribute("data-link") || "";
+//     if (link) {
+//         path.addEventListener('click', () => {
 
-      // Example: "12_Floor_24" -> 24; "Floor_08" -> 8
-      const nameMatch = name.match(/(?:^|_)Floor[_ -]?(\d+)$/i);
-      let floor = nameMatch ? Number(nameMatch[1]) : Number(path.getAttribute("floorNumber"));
+//             // optional feedback
+//             // path.style.opacity = "0.6";
 
-      // Example: "Floor/Tower-12.html" -> 12; "Tower_B.html" -> B
-      const linkMatch = link.match(/Tower[-_]?([A-Z]|\d+A?)\.html(?:$|[?#])/i);
-      let tower = linkMatch ? linkMatch[1] : "";
+//             setTimeout(() => {
+//                 window.location.href = link;
+//             }, 800);
+//         });
+//     }
+// });
 
-      // Fallback for names like "12_Floor_24"
-      if (!tower) {
-        const towerMatch = name.match(/^(.+?)_Floor[_ -]?\d+$/i);
-        if (towerMatch) tower = towerMatch[1];
-      }
+// paths.forEach(path => {
+//     const link = path.getAttribute('data-link');
 
-      tower = String(tower).replace(/^Tower[-_ ]?/i, "").trim();
+//     if (link) {
+//         path.addEventListener('click', () => {
 
-      if (!tower || !Number.isInteger(floor) || floor < 1 || floor > 32) {
-        console.warn("Floor navigation stopped:", { name, link, tower, floor });
-        return;
-      }
+//             // remove all previous
+//             paths.forEach(p => p.classList.remove('selected'));
 
-      sessionStorage.setItem("selectedTower", tower);
-      sessionStorage.setItem("selectedFloor", String(floor));
-      sessionStorage.setItem("heroHomesTower", tower);
-      sessionStorage.setItem("heroHomesFloor", String(floor));
+//             // add selected
+//             path.classList.add('selected');
 
-      paths.forEach((p) => p.classList.remove("selected"));
-      path.classList.add("selected");
+//             // 🔒 disable hover effect after click
+//             paths.forEach(p => p.style.pointerEvents = "none");
 
-      const target = new URL(link, window.location.href);
-      target.searchParams.set("floor", String(floor));
+//             setTimeout(() => {
+//                 window.location.href = link;
+//             }, 800);
+//         });
+//     }
+// });
 
-      window.location.href = target.href;
+
+
+const paths = document.querySelectorAll('.Cutout path');
+
+paths.forEach(path => {
+
+    const link = path.getAttribute('data-link');
+
+    if (!link) return;
+
+    path.addEventListener('click', () => {
+
+        const floorNumber =
+            path.id.replace('Floor_', '').padStart(2, '0');
+
+        sessionStorage.setItem(
+            "selectedFloor",
+            floorNumber
+        );
+
+        paths.forEach(p => p.classList.remove('selected'));
+        path.classList.add('selected');
+
+        paths.forEach(p => p.style.pointerEvents = "none");
+
+        setTimeout(() => {
+            window.location.href = link;
+        }, 800);
     });
-  });
-})();
+
+});
