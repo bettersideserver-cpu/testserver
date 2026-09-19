@@ -3905,8 +3905,8 @@ body::after {
     .tb-actions {
         position: fixed !important;
 
-        top: 14px !important;
-        right: 14px !important;
+        top: 0px !important;
+        right: 0px !important;
         left: auto !important;
         bottom: auto !important;
 
@@ -3944,8 +3944,8 @@ body::after {
 
     .top-controls,
     .tb-actions {
-        top: 10px !important;
-        right: 10px !important;
+        top: 0px !important;
+        right: 0px !important;
     }
 
     .menu-btn {
@@ -3957,6 +3957,87 @@ body::after {
         top: 64px !important;
         right: 10px !important;
         width: calc(100vw - 20px) !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .nearby-essentials-btn {
+        position: fixed !important;
+
+        /* CENTER */
+        left: 24% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+
+        /* ABOVE CURRENT STATUS / ENQUIRY */
+        bottom: 140px !important;
+
+        /* MUST BE ABOVE JUMPBAR */
+        z-index: 12000 !important;
+
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+
+        width: auto !important;
+        min-width: 170px !important;
+        min-height: 44px !important;
+
+        padding: 11px 18px !important;
+
+        background: #ffffff !important;
+        color: #0A2B21 !important;
+
+        border: 1px solid #C0392B !important;
+        border-radius: 999px !important;
+
+        font-size: 10px !important;
+        letter-spacing: 1.2px !important;
+        white-space: nowrap !important;
+
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18) !important;
+    }
+
+    .nearby-essentials-btn svg {
+        width: 15px !important;
+        height: 15px !important;
+        color: #C0392B !important;
+    }
+
+    .nearby-essentials-btn:hover {
+        background: #C0392B !important;
+        color: #ffffff !important;
+        transform: translateX(-50%) translateY(-2px) !important;
+    }
+
+    .nearby-essentials-btn:hover svg {
+        color: #ffffff !important;
+    }
+}
+
+
+/* SMALL PHONES */
+@media screen and (max-width: 480px) {
+
+    .nearby-essentials-btn {
+        bottom: 138px !important;
+        min-width: 165px !important;
+        min-height: 42px !important;
+        padding: 10px 16px !important;
+        font-size: 9px !important;
+    }
+}
+
+
+/* VERY SMALL PHONES */
+@media screen and (max-width: 380px) {
+
+    .nearby-essentials-btn {
+        bottom: 134px !important;
+        min-width: 155px !important;
+        font-size: 8.5px !important;
     }
 }
     </style>
