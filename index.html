@@ -3803,6 +3803,166 @@
         right: 7px;
     }
 }
+/* =========================================================
+   FIX — TOP RIGHT MENU / CONTROLS
+   Keeps the menu permanently visible at the top-right
+   ========================================================= */
+
+.top-controls,
+.tb-actions {
+    position: fixed !important;
+
+    right: 0px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    z-index: 100000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    transform: none !important;
+}
+
+/* Hamburger / menu button */
+.menu-btn {
+    position: relative !important;
+
+    width: 46px !important;
+    height: 46px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    z-index: 100001 !important;
+}
+
+/* Make sure the hamburger lines are visible */
+.menu-btn-lines {
+    display: block !important;
+    position: relative !important;
+
+    width: 20px !important;
+    height: 14px !important;
+}
+
+.menu-btn-lines span {
+    display: block !important;
+    position: absolute !important;
+
+    left: 0 !important;
+    width: 100% !important;
+    height: 2px !important;
+
+    background: var(--gold) !important;
+    opacity: 1 !important;
+}
+
+/* Dropdown should appear directly below menu */
+.dropdown-menu {
+    position: fixed !important;
+
+    top: 80px !important;
+    right: 24px !important;
+    left: auto !important;
+
+    z-index: 100002 !important;
+}
+
+/* Open state */
+.dropdown-menu.is-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Prevent overlays/background layers from covering menu */
+body::before,
+body::after {
+    z-index: 9998 !important;
+}
+
+.ambient-particles {
+    z-index: 9997 !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .top-controls,
+    .tb-actions {
+        position: fixed !important;
+
+        top: 14px !important;
+        right: 14px !important;
+        left: auto !important;
+        bottom: auto !important;
+
+        z-index: 100000 !important;
+
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+
+        transform: none !important;
+    }
+
+    .menu-btn {
+        width: 46px !important;
+        height: 46px !important;
+
+        z-index: 100001 !important;
+    }
+
+    .dropdown-menu {
+        top: 70px !important;
+        right: 14px !important;
+        left: auto !important;
+
+        width: calc(100vw - 28px) !important;
+        max-width: 320px !important;
+
+        z-index: 100002 !important;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+
+    .top-controls,
+    .tb-actions {
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .menu-btn {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .dropdown-menu {
+        top: 64px !important;
+        right: 10px !important;
+        width: calc(100vw - 20px) !important;
+    }
+}
 
     </style>
 </head>
