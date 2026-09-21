@@ -1683,6 +1683,33 @@ background: rgba(18,35,30,.94);
 #floorMapBtn:active {
     transform: translateY(0) scale(.98);
 }
+
+/* =========================================
+   MOBILE — FLOOR MAP ABOVE REQUEST TO HOLD
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    #floorMapBtn {
+        top: auto !important;
+        left: auto !important;
+
+        right: 14px !important;
+        bottom: 118px !important;
+
+        height: 42px !important;
+        padding: 0 14px !important;
+
+        font-size: 10px !important;
+        border-radius: 11px !important;
+    }
+
+    #floorMapBtn svg {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+}
 </style>
 
 <script>
