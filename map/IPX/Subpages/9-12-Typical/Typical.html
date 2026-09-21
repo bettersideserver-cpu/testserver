@@ -2750,8 +2750,17 @@ document.getElementById("backBtn").addEventListener("click", function (e) {
             window.addEventListener('load', updateScrollArrows);
         }
         document.getElementById("floorMapBtn").addEventListener("click", () => {
-    window.location.href = "../Floor/Tower-9.html";
-});
+            const pageParams = new URLSearchParams(window.location.search);
+            const tower = pageParams.get("tower") || sessionStorage.getItem("selectedTower") || "9";
+            const floor = pageParams.get("floor") || sessionStorage.getItem("selectedFloor") || "1";
+            const unit = pageParams.get("unit") || sessionStorage.getItem("selectedUnit");
+            const floorMaps = { "9": "../Floor/Tower-9.html", "12A": "../Floor/Tower-C-12-A.html" };
+            const destination = new URL(floorMaps[tower] || floorMaps["9"], window.location.href);
+            destination.searchParams.set("tower", tower);
+            destination.searchParams.set("floor", floor);
+            if (unit) destination.searchParams.set("unit", unit);
+            window.location.href = destination.href;
+        });
 </script>
 
 </body>

@@ -123,9 +123,10 @@
 
   function init(){
     window.HeroHomesVisitor=saved();window.HeroHomesContext=context;window.HeroHomesGetSavedLead=saved;window.HeroHomesResetVisitor=()=>{sessionStorage.removeItem(VISITOR_KEY);location.reload()};
-    const file=location.pathname.split('/').pop()||'';
-    const isTower=/^Tower_[ABC]\.html$/i.test(file);
-    if(isTower && !saved())showGate();
+    // Only pages that opt in should show the visitor form on arrival.
+    // The map landing pages opt in with data-hero-homes-visitor-gate="true".
+    const shouldShowInitialGate=document.documentElement.dataset.heroHomesVisitorGate==='true';
+    if(shouldShowInitialGate && !saved())showGate();
     wireTowerFloorLinks();wireHold();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();

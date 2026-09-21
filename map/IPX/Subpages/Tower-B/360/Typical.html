@@ -2669,6 +2669,23 @@ document.getElementById("backBtn").addEventListener("click", function (e) {
 </script>
 
 
+<script>
+    (function () {
+        const floorMapBtn = document.getElementById("floorMapBtn");
+        if (!floorMapBtn) return;
+        floorMapBtn.addEventListener("click", () => {
+            const pageParams = new URLSearchParams(window.location.search);
+            const tower = pageParams.get("tower") || sessionStorage.getItem("selectedTower") || "11";
+            const floor = pageParams.get("floor") || sessionStorage.getItem("selectedFloor") || "1";
+            const unit = pageParams.get("unit") || sessionStorage.getItem("selectedUnit");
+            const destination = new URL("../../Floor/Tower-11.html", window.location.href);
+            destination.searchParams.set("tower", tower);
+            destination.searchParams.set("floor", floor);
+            if (unit) destination.searchParams.set("unit", unit);
+            window.location.href = destination.href;
+        });
+    })();
+</script>
 </body>
 
 </html>

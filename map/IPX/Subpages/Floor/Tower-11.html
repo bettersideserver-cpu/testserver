@@ -830,6 +830,7 @@
                     e.preventDefault();
                     e.stopPropagation();
                     const url = new URL(link, window.location.href);
+                    url.searchParams.set('tower', '11');
                     url.searchParams.set('floor', currentFloor);
                     window.location.href = url.href;
                 });
