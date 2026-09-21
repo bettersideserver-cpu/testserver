@@ -2829,23 +2829,25 @@
                  Lives INSIDE .image-wrapper so it tracks map geography; the
                  __upright layer counter-rotates it on mobile. Position is set
                  by JS/PlotBrand.js. -->
-                    <!-- desktop keeps the default rightward layout; mobile portrait
-                 flips to the left of the anchor (requested). -->
                     <!-- Desktop keeps the default rightward layout off the plot's
-                 right-middle edge (anchor 18.9 / 60.32).
+                 right-middle edge (anchor 64.9 / 40.32).
 
-                 Mobile portrait flips to the left AND pushes the anchor out
-                 to x 22.65, because the map is rotated 90deg there: with the
-                 desktop anchor, leftward ran along the outline and clipped
-                 it. x 22.65 is the SMALLEST outward offset that keeps the
-                 leftward plate clear of the outline (0/121 sample points)
-                 with no screen spill at 390x844, 360x640, 430x932 AND
-                 412x915 -- anything nearer clipped at one width or another.
-                 Trade-off: the dot sits ~35px clear of the outline instead
-                 of on its edge. Keeping the outline uncovered was the
-                 stated hard constraint, so it wins. -->
-                    <div class="plot-brand" data-side-mobile="left" data-anchor-x-mobile="18.65"
-                        data-anchor-y-mobile="7.31">
+                 Mobile portrait keeps the plate on the RIGHT too (requested),
+                 but needs its OWN anchor: the plot's actual bbox is x
+                 55.1-71.1%, y 35.8-62.9% of the map (measured from the SVG
+                 path data), nowhere near the old mobile anchor this used to
+                 carry -- that stale value pinned the connector far from the
+                 outline and let a leftover manual pixel offset (removed from
+                 PlotBrand.js) walk the plate into the address badge. Anchor
+                 74 / 40 sits just past the plot's rightmost vertex (71.1%),
+                 so a rightward plate clears the outline (0/81 sample points)
+                 with no screen spill and no overlap with .prop-address, at
+                 320x568, 360x640, 390x844, 412x915, 430x932 AND 768x1024.
+                 chooseSide()/fitToViewport() in PlotBrand.js still have the
+                 final say per layout pass -- this anchor is just the point
+                 they measure from. -->
+                    <div class="plot-brand" data-side-mobile="right" data-anchor-x-mobile="74"
+                        data-anchor-y-mobile="40">
                         <div class="plot-brand__upright">
                             <span class="plot-brand__dot" aria-hidden="true"></span>
                             <div class="plot-brand__body">

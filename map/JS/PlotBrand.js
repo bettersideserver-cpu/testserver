@@ -35,7 +35,7 @@
        can never disagree about which mode they are in. */
     var MOBILE_MQ = "(max-width: 768px) and (orientation: portrait)";
 // MOBILE LOGO POSITION CONTROLS
-var MOBILE_LOGO_X = 356;  // + = right, - = left
+var MOBILE_LOGO_X = 0;  // + = right, - = left
 var MOBILE_LOGO_Y = 25;  // + = down, - = up
     function isMobilePortrait() {
         return !!(window.matchMedia && window.matchMedia(MOBILE_MQ).matches);

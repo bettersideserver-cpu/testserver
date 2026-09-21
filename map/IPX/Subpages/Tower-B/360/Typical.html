@@ -1622,6 +1622,67 @@ background: rgba(18,35,30,.94);
         font-size: 14px;
     }
 }
+/* =========================================================
+   FLOOR MAP BUTTON
+   ========================================================= */
+
+#floorMapBtn {
+    position: fixed;
+    top: 24px;
+    left: 82px;
+
+    z-index: 10000;
+
+    height: 46px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid #c62828;
+    border-radius: 13px;
+
+    background: #ffffff;
+    color: #000000;
+
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .05em;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.18);
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+#floorMapBtn svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+#floorMapBtn:hover {
+    background: #f8d7da;
+    color: #000000;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 28px rgba(198,40,40,.18);
+}
+
+#floorMapBtn:active {
+    transform: translateY(0) scale(.98);
+}
 </style>
 
 <script>
@@ -1864,7 +1925,19 @@ background: rgba(18,35,30,.94);
 
 
     <button id="backBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+<button id="floorMapBtn" aria-label="Open Floor Map">
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor"
+         stroke-width="1.8"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+        <path d="M3 6L9 3L15 6L21 3V18L15 21L9 18L3 21V6Z"/>
+        <path d="M9 3V18"/>
+        <path d="M15 6V21"/>
+    </svg>
 
+    <span>FLOOR MAP</span>
+</button>
     <div id="roomInfoCard">
         <div class="hud-name" id="cardName">Room</div>
         <div class="hud-dims">
