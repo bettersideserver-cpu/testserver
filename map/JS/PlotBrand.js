@@ -34,9 +34,6 @@
        the query Brand-Logo.css uses for its mobile size vars, so CSS and JS
        can never disagree about which mode they are in. */
     var MOBILE_MQ = "(max-width: 768px) and (orientation: portrait)";
-// MOBILE LOGO POSITION CONTROLS
-var MOBILE_LOGO_X = 0;  // + = right, - = left
-var MOBILE_LOGO_Y = 25;  // + = down, - = up
     function isMobilePortrait() {
         return !!(window.matchMedia && window.matchMedia(MOBILE_MQ).matches);
     }
@@ -139,12 +136,14 @@ brand.style.top = topPercent + "%";
 
 chooseSide(brand);
 
-if (isMobilePortrait()) {
-    brand.style.translate =
-        MOBILE_LOGO_X + "px " + MOBILE_LOGO_Y + "px";
-} else {
-    brand.style.removeProperty("translate");
-}
+// No manual pixel nudge here: chooseSide()/fitToViewport() already pick
+// the side and gap that keeps the plate off the outline, off the fixed
+// UI (.prop-address included, via OBSTACLES) and on screen. A flat
+// translate() applied after that measurement ignores what it found and
+// can walk the plate straight back into the address badge or off the
+// edge, which is exactly the bug this caused. removeProperty() makes
+// sure no stale value lingers on either layout.
+brand.style.removeProperty("translate");
         brand.classList.add("is-placed");
         startAnimation(brand);
     }
