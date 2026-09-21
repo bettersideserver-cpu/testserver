@@ -307,3 +307,10 @@
         0 0 5px rgba(255,255,255,0.8),
         0 0 12px rgba(255,255,255,0.35);
 }
+
+@media (max-width: 600px) {
+    #availableOffTooltip {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+}

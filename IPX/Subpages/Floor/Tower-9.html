@@ -286,6 +286,22 @@
             color: rgb(255, 255, 255);
         }
 
+        /* Room-name tooltip built by available-toggle.js (readable on mobile too) */
+        #hhRoomTooltip {
+            position: fixed;
+            z-index: 2147483647;
+            display: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.88);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
         .close-btn2 {
             position: fixed;
             top: 50px;
@@ -318,9 +334,11 @@
             }
 
             .touch-button {
-                --btn-scale: 0.75;
-                font-size: 14px;
-                padding: 10px 10px;
+                --btn-scale: 0.9;
+                font-size: 16px;
+                padding: 12px 14px;
+                min-width: 44px;
+                min-height: 44px;
             }
         }
 
@@ -437,7 +455,7 @@
 
             .dock-item-label {
                 display: block !important;
-                font-size: 10px !important;
+                font-size: 12px !important;
                 color: #fff !important;
                 text-align: center !important;
                 margin-top: 2px !important;
@@ -1384,6 +1402,26 @@
 
         })();
     </script>
+
+    <!-- ================================================================
+         MOBILE FIX: lock the background photo and the SVG hotspot layer
+         to the exact same box, on every phone size / rotation.
+
+         Root cause of "background stuck / SVG in wrong spot": the photo
+         used object-fit:cover while the SVG used preserveAspectRatio
+         "slice" with its own viewBox (3840 x 5830). Those are two
+         different cropping algorithms — they only agree when the photo's
+         real aspect ratio exactly equals the viewBox aspect ratio, which
+         is why the mismatch only showed up on narrow mobile aspect ratios.
+
+         Fix: stop letting the browser crop each element on its own.
+         Instead we size ONE shared "stage" box (#contentWrapper) so its
+         aspect ratio always equals the SVG's viewBox aspect ratio, scaled
+         up with cover-math to fully cover the screen, then center it.
+         The image and the SVG both fill that exact same box edge-to-edge
+         with no internal cropping, so they can never drift apart.
+    ==================================================================== -->
+    <script src="hh-mobile-stage-fix.js"></script>
 </body>
 
 </html>
