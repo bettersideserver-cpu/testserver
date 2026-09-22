@@ -2468,6 +2468,67 @@ function createRoomPanorama(webpFile, jpgFile) {
         }
         updateFloorIndicator();
 
+
+        // =========================================================
+        // 360° CAMERA STARTING ANGLES
+        // Change yaw / pitch / fov for each panorama.
+        //
+        // yaw   = left / right direction
+        // pitch = up / down direction
+        // fov   = zoom level (lower = more zoomed in)
+        // =========================================================
+        const CAMERA_ANGLES = {
+
+            lobby:      { yaw: 0,    pitch: 0,  fov: 100 },
+            dinning:    { yaw: 0,  pitch: 0,  fov: 100 },
+            kitchen:    { yaw: 0,   pitch: 0,  fov: 100 },
+
+            // Guest Room
+            room_1:     { yaw: 0,   pitch: 0,  fov: 100 },
+
+            // Kids Room
+            room_2:     { yaw: 0,  pitch: 0,  fov: 100 },
+
+            // Grandparent's Room
+            room_3:     { yaw: 0,   pitch: 0,  fov: 100 },
+
+            // Master Bedroom
+            room_4:     { yaw: 0,  pitch: 0,  fov: 100 },
+
+            bathroom_1: { yaw: 0,  pitch: 0,  fov: 100 },
+            bathroom_2: { yaw: 0,    pitch: 0,  fov: 100 },
+            bathroom_3: { yaw: 0,   pitch: 0,  fov: 100 },
+            bathroom_4: { yaw: 0,   pitch: 0,  fov: 100 },
+
+            balcony:    { yaw: 0, pitch: -5, fov: 100 },
+            pool:       { yaw: 0,    pitch: 0,  fov: 100 }
+        };
+
+        function applyCameraAngle(roomName) {
+
+            const angle = CAMERA_ANGLES[roomName];
+
+            if (!angle) return;
+
+            const distance = 5000;
+
+            const phi = THREE.MathUtils.degToRad(90 - angle.pitch);
+            const theta = THREE.MathUtils.degToRad(angle.yaw);
+
+            const target = new THREE.Vector3(
+                distance * Math.sin(phi) * Math.cos(theta),
+                distance * Math.cos(phi),
+                distance * Math.sin(phi) * Math.sin(theta)
+            );
+
+            // Smoothly move the 360° camera to the saved direction
+            viewer.tweenControlCenter(target);
+
+            // Apply the saved zoom
+            viewer.camera.fov = angle.fov;
+            viewer.camera.updateProjectionMatrix();
+        }
+
         // ── Helpers ──
         function addHotspot(from, to, yaw, pitch, text) {
             const spot = new PANOLENS.Infospot(500, ARROW_ICON);
@@ -2496,6 +2557,12 @@ function createRoomPanorama(webpFile, jpgFile) {
                             viewer.setPanorama(rooms[to]);
                             viewer.camera.fov = 100;
                             viewer.camera.updateProjectionMatrix();
+
+                            // Apply the destination room's starting camera angle
+                            setTimeout(() => {
+                                applyCameraAngle(to);
+                            }, 50);
+
                             setTimeout(() => { overlay.style.opacity = 0; }, 300);
                             // sync nav pill
                             document.querySelectorAll('.tour-pill').forEach(p => {
@@ -2636,6 +2703,12 @@ addHotspot("bathroom_1", "room_1", 210, -9, "Guest Room");
         // ── Init ──
         const startRoom = rooms[initialRoom] ? initialRoom : "lobby";
         viewer.setPanorama(rooms[startRoom]);
+
+        // Apply starting camera angle on initial load
+        setTimeout(() => {
+            applyCameraAngle(startRoom);
+        }, 100);
+
         showInfoCard(startRoom);
         updateBalconyControls(startRoom);
         document.querySelectorAll('.tour-pill').forEach(p => {
