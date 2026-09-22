@@ -2247,6 +2247,12 @@ const rooms = {
             viewer.add(panorama);
             rooms.balcony = panorama;
             viewer.setPanorama(panorama);
+
+            // Keep the balcony panorama at its configured starting angle.
+            setTimeout(() => {
+                applyCameraAngle("balcony");
+            }, 50);
+
             updateBalconyControls("balcony");
 
             // Remove the previous dynamically-created panorama when PANOLENS exposes remove().
@@ -2290,6 +2296,12 @@ const rooms = {
                             viewer.setPanorama(rooms[to]);
                             viewer.camera.fov = 100;
                             viewer.camera.updateProjectionMatrix();
+
+                            // Apply the saved starting camera angle for the destination room.
+                            setTimeout(() => {
+                                applyCameraAngle(to);
+                            }, 50);
+
                             setTimeout(() => { overlay.style.opacity = 0; }, 300);
                             // sync nav pill
                             document.querySelectorAll('.tour-pill').forEach(p => {
@@ -2332,6 +2344,58 @@ const rooms = {
             card.classList.remove("visible");
             setTimeout(() => card.classList.add("visible"), 80);
         }
+
+// =========================================
+// 360° CAMERA STARTING ANGLES
+// =========================================
+//
+// yaw   = left / right rotation in degrees
+// pitch = up / down rotation in degrees
+// fov   = zoom level (smaller = more zoomed in)
+//
+// Change these values for each room to decide exactly
+// which direction the 360° panorama opens toward.
+// =========================================
+
+const CAMERA_ANGLES = {
+    lobby:       { yaw:   0, pitch:  0, fov: 100 },
+    dinning:     { yaw: 0, pitch:  0, fov: 100 },
+    kitchen:     { yaw:  0, pitch:  0, fov: 100 },
+    room_1:      { yaw:  0, pitch:  0, fov: 100 },
+    room_2:      { yaw: 0, pitch:  0, fov: 100 },
+    room_3:      { yaw:  0, pitch:  0, fov: 100 },
+    bathroom_1:  { yaw: 0, pitch:  0, fov: 100 },
+    bathroom_2:  { yaw:   0, pitch:  0, fov: 100 },
+    bathroom_3:  { yaw:  0, pitch:  0, fov: 100 },
+    balcony:     { yaw: 0, pitch: -5, fov: 100 },
+    pool:        { yaw:   0, pitch:  0, fov: 100 }
+};
+
+function applyCameraAngle(roomName) {
+    const angle = CAMERA_ANGLES[roomName];
+    if (!angle || !viewer || !viewer.camera) return;
+
+    const distance = 5000;
+
+    const phi = THREE.MathUtils.degToRad(90 - angle.pitch);
+    const theta = THREE.MathUtils.degToRad(angle.yaw);
+
+    const target = new THREE.Vector3(
+        distance * Math.sin(phi) * Math.cos(theta),
+        distance * Math.cos(phi),
+        distance * Math.sin(phi) * Math.sin(theta)
+    );
+
+    // Smoothly rotate the 360° view to the requested direction.
+    if (typeof viewer.tweenControlCenter === "function") {
+        viewer.tweenControlCenter(target, 700);
+    } else {
+        viewer.camera.lookAt(target);
+    }
+
+    viewer.camera.fov = angle.fov;
+    viewer.camera.updateProjectionMatrix();
+}
 
         // ── Nav pill navigation ──
 // ── Nav pill navigation ──
@@ -2428,6 +2492,12 @@ function goToRoom(roomName, btn) {
         // ── Init ──
         const startRoom = rooms[initialRoom] ? initialRoom : "lobby";
         viewer.setPanorama(rooms[startRoom]);
+
+        // Apply the starting camera angle on first load.
+        setTimeout(() => {
+            applyCameraAngle(startRoom);
+        }, 150);
+
         showInfoCard(startRoom);
         updateBalconyControls(startRoom);
         document.querySelectorAll('.tour-pill').forEach(p => {
