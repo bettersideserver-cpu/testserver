@@ -972,6 +972,8 @@
                     const url = new URL(link, window.location.href);
                     url.searchParams.set('tower', '9');
                     url.searchParams.set('floor', currentFloor);
+                    const unitMatch = String(path.id || '').trim().match(/^([12])\b/);
+                    if (unitMatch) url.searchParams.set('unit', unitMatch[1]);
                     window.location.href = url.href;
                 });
             });
