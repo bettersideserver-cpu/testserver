@@ -1914,12 +1914,20 @@ background: rgba(18,35,30,.94);
 
 
 
-        <button class="tour-pill" onclick="goToRoom('balcony', this)">
+        <button class="tour-pill" data-balcony-type="F" onclick="goToRoom('balcony', this, 'F')">
             <svg viewBox="0 0 24 24" fill="none">
                 <path d="M3 12V8H21V12" stroke="currentColor" stroke-width="1.8" />
                 <path d="M3 12H21V20H3V12Z" stroke="currentColor" stroke-width="1.8" />
             </svg>
-            <span>Balcony</span>
+            <span>Garden View Balcony</span>
+        </button>
+
+        <button class="tour-pill" data-balcony-type="B" onclick="goToRoom('balcony', this, 'B')">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3 12V8H21V12" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3 12H21V20H3V12Z" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+            <span>Back Balcony</span>
         </button>
 
     </div>
@@ -2135,8 +2143,8 @@ const rooms = {
     kitchen: createRoomPanorama("kitchen.webp", "kitchen.jpg")
 };
         // ── Balcony floor system ──
-        // Balcony type is selected by the OFF-state SVG that opened this viewer.
-        // B and F files are both supported.
+        // The entry link sets the initial balcony; the navigation buttons can switch it.
+        // F is Garden View Balcony and B is Back Balcony.
         const BALCONY_FLOORS = [1, 5, 10, 15, 20, 25, 32];
         const balconyFloorSelect = document.getElementById("balconyFloorSelect");
         let currentBalconyFloor = getInitialBalconyFloor();
@@ -2207,7 +2215,18 @@ const rooms = {
             if (balconyFloorSelect) balconyFloorSelect.value = String(currentBalconyFloor);
         }
 
+        function updateActiveRoomPill(roomName) {
+            document.querySelectorAll('.tour-pill').forEach(p => {
+                const onclick = p.getAttribute('onclick') || '';
+                const type = p.getAttribute('data-balcony-type');
+                const active = onclick.includes("'" + roomName + "'") &&
+                    (!type || type === balconyType);
+                p.classList.toggle('active', active);
+            });
+        }
+
         function updateBalconyControls(roomName) {
+            updateActiveRoomPill(roomName);
             const controls = document.getElementById("balconyControls");
             if (!controls) return;
             const isBalcony = roomName === "balcony";
@@ -2229,8 +2248,7 @@ const rooms = {
             );
             spot.addHoverText("Master Bedroom");
             spot.addEventListener("click", () => {
-                viewer.setPanorama(rooms.room_1);
-                updateBalconyControls("room_1");
+                goToRoom("room_1");
             });
             panorama.add(spot);
         }
@@ -2303,12 +2321,6 @@ const rooms = {
                             }, 50);
 
                             setTimeout(() => { overlay.style.opacity = 0; }, 300);
-                            // sync nav pill
-                            document.querySelectorAll('.tour-pill').forEach(p => {
-                                p.classList.remove('active');
-                                const oc = p.getAttribute('onclick');
-                                if (oc && oc.includes("'" + to + "'")) p.classList.add('active');
-                            });
                             showInfoCard(to);
                             updateBalconyControls(to);
                         }
@@ -2399,30 +2411,26 @@ function applyCameraAngle(roomName) {
 
         // ── Nav pill navigation ──
 // ── Nav pill navigation ──
-function goToRoom(roomName, btn) {
+function goToRoom(roomName, btn, requestedBalconyType = balconyType) {
+    if (roomName === "balcony") {
+        balconyType = requestedBalconyType === "B" ? "B" : "F";
+        sessionStorage.setItem("balconyType", balconyType);
+    }
 
-    // Add room to history only during normal navigation
+    // Remember the balcony side so Back can return to the correct view.
     if (!isGoingBack) {
-        if (roomHistory[roomHistory.length - 1] !== roomName) {
-            roomHistory.push(roomName);
+        const entry = {
+            roomName,
+            balconyType: roomName === "balcony" ? balconyType : null
+        };
+        const previous = roomHistory[roomHistory.length - 1];
+        if (!previous || previous.roomName !== entry.roomName ||
+            previous.balconyType !== entry.balconyType) {
+            roomHistory.push(entry);
         }
     }
 
-    document.querySelectorAll('.tour-pill')
-        .forEach(p => p.classList.remove('active'));
-
-    if (btn) btn.classList.add('active');
-
-    // If navigating through Back button, activate the correct pill
-    if (!btn) {
-        document.querySelectorAll('.tour-pill').forEach(p => {
-            const oc = p.getAttribute('onclick');
-
-            if (oc && oc.includes("'" + roomName + "'")) {
-                p.classList.add('active');
-            }
-        });
-    }
+    updateActiveRoomPill(roomName);
 
     const overlay =
         document.getElementById("fadeOverlay");
@@ -2431,7 +2439,11 @@ function goToRoom(roomName, btn) {
 
     setTimeout(() => {
 
-        viewer.setPanorama(rooms[roomName]);
+        if (roomName === "balcony" && rooms.balcony.userData.balconyType !== balconyType) {
+            changeBalconyFloor(currentBalconyFloor);
+        } else {
+            viewer.setPanorama(rooms[roomName]);
+        }
 
         // Apply saved starting camera angle
         setTimeout(() => {
@@ -2500,18 +2512,17 @@ function goToRoom(roomName, btn) {
 
         showInfoCard(startRoom);
         updateBalconyControls(startRoom);
-        document.querySelectorAll('.tour-pill').forEach(p => {
-            p.classList.remove('active');
-            const oc = p.getAttribute('onclick');
-            if (oc && oc.includes("'" + startRoom + "'")) p.classList.add('active');
-        });
+
 
  // ── Room navigation history ──
 // =========================================
 // ROOM HISTORY + PAGE HISTORY
 // =========================================
 
-let roomHistory = [startRoom];
+let roomHistory = [{
+    roomName: startRoom,
+    balconyType: startRoom === "balcony" ? balconyType : null
+}];
 let isGoingBack = false;
 
 document.getElementById("backBtn").addEventListener("click", function (e) {
@@ -2532,14 +2543,14 @@ document.getElementById("backBtn").addEventListener("click", function (e) {
         const previousRoom =
             roomHistory[roomHistory.length - 1];
 
-        if (!previousRoom || !rooms[previousRoom]) {
+        if (!previousRoom || !rooms[previousRoom.roomName]) {
             return;
         }
 
         // Tell goToRoom() this is a BACK navigation
         isGoingBack = true;
 
-        goToRoom(previousRoom);
+        goToRoom(previousRoom.roomName, null, previousRoom.balconyType);
 
         // Reset after navigation has been triggered
         setTimeout(() => {
