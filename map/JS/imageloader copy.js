@@ -2,25 +2,39 @@ window.addEventListener('DOMContentLoaded', () => {
     const img = document.getElementById('floorImage');
     if (!img) return;
 
+    // Low-resolution image is shown immediately.
+    const lowSrc = img.getAttribute('src');
     const fullSrc = img.getAttribute('data-full');
-    if (!fullSrc) return;
 
-    // Preload the high-res without blocking render
+    if (!lowSrc || !fullSrc || lowSrc === fullSrc) return;
+
+    // Keep the low-res image visible while the full-resolution image
+    // downloads and decodes completely in the background.
     const hi = new Image();
     hi.decoding = 'async';
-    hi.src = fullSrc;
+    hi.fetchPriority = 'high';
 
-    // Prefer decode() for a jank-free swap
-    const done = () => {
-        // swap to high-res
+    hi.onload = async () => {
+        try {
+            // Wait until the browser has decoded the full image.
+            if (hi.decode) {
+                await hi.decode();
+            }
+        } catch (e) {
+            // The image is already loaded; a decode failure should not
+            // prevent the swap.
+        }
+
+        // Swap only after the full-resolution image is ready.
         img.src = fullSrc;
         img.classList.add('is-loaded');
     };
 
-    if ('decode' in hi) {
-        hi.decode().then(done).catch(done);
-    } else {
-        hi.onload = done;
-        hi.onerror = done; // if it fails, at least drop the blur
-    }
+    // If the full image fails, keep the low-res image on screen.
+    hi.onerror = () => {
+        console.warn('Full-resolution image failed to load:', fullSrc);
+    };
+
+    // Start the full-resolution download in the background.
+    hi.src = fullSrc;
 });
