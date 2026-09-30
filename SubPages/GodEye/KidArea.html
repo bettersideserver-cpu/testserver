@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N68LBFPB');</script>
+<!-- End Google Tag Manager -->
+<link rel="icon" type="image/ico" href="/images/favicon.ico">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY88SZVMN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZY88SZVMN0');
+</script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CM Infinia</title>
+  <link rel="stylesheet" href="./../../wbn05d6fbh.css" />
+</head>
+
+<body> 
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N68LBFPB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <!-- Button (use JS click handler so message is built fresh on click) -->
+  <button id="waFab" class="wa-fab" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <!-- simple inline WhatsApp SVG icon -->
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M21.02 11.63c0 5.38-4.36 9.74-9.74 9.74-1.24 0-2.42-.23-3.51-.65l-6.78 2 1.67-6.54a9.8 9.8 0 0 1-1.12-4.55c0-5.38 4.36-9.74 9.74-9.74s9.74 4.36 9.74 9.74Z"
+        style="fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:.25px" />
+      <path
+        d="M15.45 13.68c-.32-.11-.54-.21-.75.11s-.86 1.07-.97 1.29c-.11.21-.32.21-.54.11-.32-.11-1.4-.43-2.58-1.5-.97-.86-1.61-1.83-1.83-2.15s0-.54.11-.75l.43-.43c.11-.11.21-.32.32-.54s.04-.43-.02-.64c-.06-.16-.64-1.72-.97-2.36-.21-.54-.43-.43-.64-.43h-.54c-.18 0-.48.06-.75.35-.27.28-1.02 1.01-1.02 2.47s0 2.79 1.18 4.19 3.22 2.9 5.16 3.65c1.93.75 2.15.54 2.58.54s1.72-.54 2.04-1.29.25-1.24.21-1.4-.11-.42-.38-.57l-1.05-.64Z"
+        style="fill:#25d366" />
+    </svg>
+  </button>
+  <div id="waLabel" class="wa-label">Chat on WhatsApp</div>
+  <button class="close-btn" id="closeCard">←</button>
+  <div class="main-container">
+    <div class="image-container"></div>
+  </div>
+  <!-- Bottom Center Panel -->
+  <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+    <div class="jumpbar-inner">
+      <button class="jumpchip" onclick="location.href='../../index.html'">Home</button>
+      <button class="jumpchip" onclick="location.href='Garden.html'">Garden</button>
+      <button class="jumpchip" onclick="location.href='SidePark.html'">Side Park</button>
+      <button class="jumpchip" onclick="location.href='CricketArea.html'">Cricket Pitch</button>
+      <button class="jumpchip" onclick="location.href='BasketBall.html'">BasketBall Area</button>
+      <button class="jumpchip" onclick="location.href='PetArea.html'">Pet Area</button>
+      <button class="jumpchip" onclick="location.href='../Tower_Mall.html'">Club House</button>
+      <button class="jumpchip" onclick="location.href='../Tower_A.html'">Tower A-B</button>
+      <button class="jumpchip" onclick="location.href='../Tower_B.html'">Tower C-D</button>
+      <button class="jumpchip" onclick="location.href='../Tower_C.html'">Tower E-F</button>
+      <!-- add more as you like -->
+    </div>
+  </nav>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="..." crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
+
+
+  <script>
+    // 1) Define both images (put both in /images/360/)
+    const LOW_SRC = "./../../images/Thumbnail/360/Panorama6.webp"; // lightweight preview
+    const HIGH_SRC = "./../../images/360/Panorama6.jpg";      // full quality
+
+    const imageContainer = document.querySelector(".image-container");
+
+    // 2) Create panoramas
+    const panoLow = new PANOLENS.ImagePanorama(LOW_SRC);
+    const panoHigh = new PANOLENS.ImagePanorama(HIGH_SRC);
+
+    // 3) Viewer
+    const viewer = new PANOLENS.Viewer({
+      container: imageContainer,
+      autoRotate: false,
+      autoRotateSpeed: 0.1,
+      controlBar: false,
+      cameraFov: 80
+    });
+    // after: const viewer = new PANOLENS.Viewer({...});
+    let didInitView = false;
+
+    // Keep the same initial yaw on both (texture yaw)
+    const TEXTURE_YAW = -Math.PI / 2 + 0; // your existing value
+    panoLow.rotation.y = TEXTURE_YAW;
+    panoHigh.rotation.y = TEXTURE_YAW;
+
+    // Desired tilt DOWN amount (pitch)
+    const TILT_DOWN = Math.PI / 50; // ~16°
+
+    function setInitialViewAndLockPitch() {
+      if (didInitView) return;   // ✅ run only once (prevents flicker on swap)
+      didInitView = true;
+
+      const controls = viewer.getControl();
+
+      // Positive value here, we pass -TILT to tilt DOWN
+      const TILT = -Math.PI / 7;     // adjust how much you want to tilt
+      controls.rotateUp(-TILT);      // tilt down
+
+      // No vertical limits (free up/down)
+      if ('minPolarAngle' in controls && 'maxPolarAngle' in controls) {
+        controls.minPolarAngle = 0;          // can look straight up
+        controls.maxPolarAngle = Math.PI;    // can look straight down
+      }
+
+      // Optional: rotation only (no panning)
+      if ('enablePan' in controls) controls.enablePan = false;
+    }
+
+
+    // Apply same camera view when each pano becomes active
+    panoLow.addEventListener('enter', setInitialViewAndLockPitch);
+    panoHigh.addEventListener('enter', setInitialViewAndLockPitch);
+
+    // Start with low; add both to viewer for smooth swap
+    viewer.add(panoLow);
+    viewer.add(panoHigh);
+    viewer.setPanorama(panoLow);
+
+    // Preload + swap high-res when ready
+    panoLow.addEventListener("load", () => {
+      panoHigh.addEventListener("load", () => {
+        viewer.setPanorama(panoHigh, 600); // fade swap
+        console.log("✅ Swapped to high-res panorama");
+      });
+      panoHigh.load();
+    });
+
+    panoHigh.addEventListener("error", (e) => {
+      console.warn("⚠️ Failed to load high-res:", e);
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const closeCard = document.getElementById("closeCard");
+
+      if (closeCard) {
+        closeCard.addEventListener("click", () => {
+          // 🔹 Change this path to wherever you want the button to take you
+          window.location.href = "./../../../index.html";
+          // Example: "../index.html" or "../SubPages/Tower_A.html"
+        });
+      }
+    });
+  </script>
+  <script src="./../../JS/5guwuzaijb.js"></script>
+  <script src="./../../JS/ky0nwmerow.js"></script>
+  <script src="./../../JS/ekdxgbwr0o.js"></script>
+</body>
+
+</html>

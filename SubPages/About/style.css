@@ -1,0 +1,490 @@
+/* =========================
+   ROOT
+========================= */
+:root {
+  --base-brown: #2A1C15;
+  --brown-mid: #3B261B;
+  --brown-light: #5A3E2E;
+  --gold: #D4AF37;
+}
+
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+
+  /* PAGE BACKGROUND */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(59, 63, 92, 0.85) 0%,
+      rgba(108, 111, 142, 0.55) 25%,
+      rgba(202, 166, 160, 0.45) 45%,
+      rgba(214, 161, 124, 0.45) 60%,
+      rgba(177, 132, 123, 0.55) 75%,
+      rgba(58, 42, 36, 0.85) 100%
+    ),
+    url("image/background(new).png");
+
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================
+   ABOUT HERO (BLENDED)
+========================= */
+.hero-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.hero-img {
+  -webkit-mask-image:  linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 70%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 70%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+
+
+.about-hero {
+  height: 1037px;
+  width: 100%;
+  position: relative;
+  
+
+   background:linear-gradient(
+      to bottom,
+   
+      rgba(255, 255, 255, 0) 80%,
+      rgba(125, 122, 149, 1) 100%
+  ),
+    url("image/Hero.jpg");
+
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8%;
+}
+
+/* BLEND FADE INTO NEXT SECTION */
+.about-hero::after {
+  content: ();
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 300px;
+ background-image:   linear-gradient(
+  to right,
+  #8C8FA3 0%,     /* cool grey-lavender (left) */
+  #9A96AA 25%,    /* soft muted purple */
+  #A59FB1 50%,    /* neutral lavender center */
+  #B5A7B0 75%,    /* warm dusty mauve */
+  #C6B1A4 100%    /* warm beige (right) */)
+;
+  pointer-events: none;
+}
+
+
+.about-hero-content {
+  position: relative;
+  
+  z-index: 2;
+  max-width: 520px;
+}
+
+.about-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 68px;
+  margin-bottom: 24px;
+  color:white;
+}
+
+.about-hero p {
+  margin-bottom: 350px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #E6DED5;
+}
+@media (max-width: 768px) {
+  .about-hero {
+    min-height: 80vh;
+    height: 700px;
+    padding: 0 6%;
+    justify-content: flex-end;   /* 🔥 KEEP RIGHT */
+    text-align: right;           /* 🔥 TEXT RIGHT */
+   
+  }
+   .hero-img {
+    object-position: left center;
+  }
+.hero-img-wrap {
+
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 0.5%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+ 
+  
+
+
+}
+
+  .about-hero-content {
+    max-width: 90%;
+    top: 30px;
+  }
+
+  .about-hero h1 {
+   
+    font-size: 38px;
+    margin-bottom: 16px;
+  }
+
+  .about-hero p {
+    /* text-align: ; */
+    /* color: black; */
+    
+  filter: invert(1);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 0;   
+    max-width: 190px;/* REMOVE LARGE GAP */
+  }
+
+  .about-hero::after {
+    height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .about-hero {
+    min-height: 75vh;
+    height: auto;
+    padding: 0 6% 0 40%;
+    text-align: right;
+  }
+
+  .hero-img {
+    object-position: left center;   /* 🔥 shift building */
+  }
+.hero-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 80%,
+    rgba(102, 103, 132, 1) 100%
+  );
+
+  pointer-events: none;
+}
+
+  .about-hero h1 {
+    font-size: 38px;
+  }
+
+  .about-hero p {
+    font-size: 15px;
+    max-width: 190px;
+    margin-bottom: 0;
+  }
+}
+
+/* =========================
+   GLOBAL SECTION SPACING
+========================= */
+section {
+  padding: 50px 8%;
+}
+
+/* =========================
+   OUR STORY (NO BACKGROUND)
+========================= */
+.our-story h2 {
+  font-family: 'Playfair Display', serif;
+  
+  font-size: 38px;
+  text-align: center;
+  color:#ffbe3d;
+  margin-bottom: 80px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #EDE6DE;
+}
+
+.story-text p + p {
+  margin-top: 28px;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+}
+
+/* =========================
+   PHILOSOPHY SECTION
+========================= */
+.philosophy-title {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 34px;
+  color:#ffbe3d;
+  margin-bottom: 100px;
+}
+
+.philosophy-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: rgba(255,255,255,0.35);
+  transform: translateX(-50%);
+}
+
+.philo-card {
+  width: 42%;
+  padding: 28px 28px 32px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.03);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.philo-card.left {
+  margin-right: auto;
+}
+
+.philo-card.right {
+  margin-left: auto;
+}
+
+.philo-card .number {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  background: var(--gold);
+  color: var(--base-brown);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.philo-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.philo-card p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #E8E1D9;
+}
+
+/* =========================
+   COMPANY SECTION
+========================= */
+.company-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 140px;
+}
+
+.company-image img {
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+}
+
+.company-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 24px;
+  color: #ffbe3d;
+}
+
+.company-content p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #F0E9E1;
+  margin-bottom: 22px;
+}
+
+/* CTA */
+.company-cta {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.company-cta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.company-cta p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #E6DED5;
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #E6C36A, var(--gold));
+  color: var(--base-brown);
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  filter: brightness(1.08);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  padding: 120px 8% 40px;
+}
+
+.site-footer::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+  margin-bottom: 60px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+.footer-col h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.footer-col p,
+.footer-col ul li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #E0D8CF;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #CFC6BC;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 22px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .story-grid,
+  .company-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .timeline {
+    display: none;
+  }
+
+  .philo-card {
+    width: 100%;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
