@@ -1,1437 +1,462 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-<head> 
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N68LBFPB');</script>
-<!-- End Google Tag Manager -->
-<link rel="icon" type="image/ico" href="/images/favicon.ico">
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.cminfiniaimmersive.com/"
-    }
-  ]
-}
-
-
-</script>
-
-
-
-
-
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY88SZVMN0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZY88SZVMN0');
-    </script>
-    <meta name="google-site-verification" content="Tpgine53TlLpp5PWXBi9mNwqn-8pooN50rtk0Zfw0RA" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords"
-        content="CM Infinia Immersive, CM Infinia Ludhiana, luxury apartments in Ludhiana, flats in Ludhiana, apartments in Ludhiana, property in Ludhiana, house for sale in Ludhiana Punjab, buy property in Ludhiana, Ludhiana real estate, premium residential project Ludhiana, modern apartments Ludhiana, CM Valley Ludhiana, best property to buy in Ludhiana">
-
-    <title>CM Infinia | Luxury Apartments in Ludhiana</title>
-
-    <meta name="description"
-        content="Discover CM Infinia – premium luxury 4Bhk apartments in Ludhiana offering modern design and world-class amenities.">
-
-
-
-    <link rel="canonical" href="https://www.cminfiniaimmersive.com/" />
-
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-
-    <meta name="author" content="CM Infinia" />
-    <meta name="revisit-after" content="7 days" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="CM Infinia | Luxury Apartments in Ludhiana" />
-    <meta property="og:description"
-        content="Discover premium luxury apartments in Ludhiana at CM Infinia with world-class amenities." />
-    <meta property="og:url" content="https://www.cminfiniaimmersive.com/" />
-    <meta property="og:site_name" content="CM Infinia" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CM Infinia | Luxury Apartments in Ludhiana" />
-    <meta name="twitter:description"
-        content="Premium luxury residences in Ludhiana offering modern design and amenities" />
-
-
-
-
-
-
-    <!-- <meta name="description"
-        content="The Lutyens Luxury Flats Project By MDB Group. Offering 3Bhk, 3+1Bhk luxury apartments , Flats, Homes for sale | Download Brochure /"> -->
-    <link rel=" stylesheet" href="wbn05d6fbh.css">
-    <link rel="stylesheet" href="JS/ahrb012icb.css">
-    <link rel="stylesheet" href="JS/Notification/bz0mp28u74.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hero Homes — Phase 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
+        rel="stylesheet">
     <style>
-        .mdb {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
         }
 
-        .pdf-icon {
-            width: 50px;
-            /* adjust size as needed */
-            height: auto;
-            object-fit: contain;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
         }
 
-        .fallback-text {
-            margin-left: 6px;
-            font-weight: 600;
-            color: white;
+        body {
+            background: #07100d;
+            color: #fff;
+            font-family: "DM Sans", sans-serif
         }
 
-        .info-card {
-            top: -100px;
-            left: -50px;
-            position: fixed;
-            background-color: transparent;
-            /* No blocking layer */
-            display: none;
-            z-index: 8999;
-            pointer-events: none;
-            /* ❗️ This makes whole container non-interactive except children */
-            transform: scale(.9);
-        }
-
-        @media (max-width: 600px) {
-            .Front {
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(1.8);
-            }
-
-            .info-card,
-            .info-content {
-                transform: scale(0.7);
-                top: -50px;
-                left: -30px;
-            }
-        }
-
-        body.splash-active {
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
-            touch-action: none;
-        }
-.call-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-
-              /* reduced gap */
-    padding: 11px 1px;           /* smaller height */
-
-    border-radius: 8px;           /* slightly tighter */
-    font-weight: 600;
-    font-size: 14px;              /* smaller text */
-    text-decoration: none;
-
-    background: #C9A87C;
-    color: #111;
-
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-    transition: all 0.2s ease;
-}
-
-/* hover */
-.call-btn:hover {
-    background: #0078be;
-    color: #fff;
-}
-        /* Splash */
-        .splash {
-            position: fixed;
-            inset: 0;
-            z-index: 12000;
-            display: grid;
-            place-items: center;
-            pointer-events: auto;
-            opacity: 1;
-            transition: opacity .6s ease;
-            /* smoother fade */
+            background: #07100d
         }
 
-        .splash__backdrop {
+        .bg {
             position: absolute;
             inset: 0;
-            background: rgba(10, 10, 10, .45);
-            /* keep slight tint so blur is visible */
-            backdrop-filter: blur(14px);
-            /* -webkit-backdrop-filter: blur(14px); */
+            background: url("assets/hero-render.jpg") center/cover no-repeat;
+            transform: scale(1.04);
+            animation: zoom 16s ease-out
         }
 
-        /* CONTENT: no box, no background */
-        .splash__content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            padding: 0;
-            /* no padding box */
-            background: transparent;
-            /* no box */
-            border-radius: 0;
-            /* no rounded box */
-            box-shadow: none;
-            /* no shadow box */
-            transform: translateY(8px);
-            animation: splash-pop .5s ease forwards;
-            pointer-events: none;
-        }
-
-        .splash__logo {
-            width: 300px;
-            /* bigger logo */
-            height: auto;
-            /* keep aspect */
-            object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .15));
-            filter: brightness(1.3) drop-shadow(0 4px 10px rgba(0, 0, 0, .15));
-            /* filter:
-                brightness(1.3) contrast(1.1) drop-shadow(0 0 3px rgba(255, 255, 255, 0.35)) drop-shadow(0 0 6px rgba(255, 255, 255, 0.25)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.15)); */
-        }
-
-        .splash__text {
-            font: 600 18px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            color: #fff;
-            letter-spacing: .2px;
-            opacity: .95;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
-        }
-
-        @keyframes splash-pop {
+        @keyframes zoom {
             from {
-                opacity: 0;
-                transform: translateY(16px) scale(.98);
+                transform: scale(1.08)
             }
 
             to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: scale(1.04)
             }
         }
 
-        /* Fades whole overlay out */
-        .splash.is-hidden {
-            opacity: 0;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .splash__content {
-                animation: none;
-                transform: none;
-            }
-
-            .splash {
-                transition: opacity .2s linear;
-            }
-        }
-
-        .rera-blueprint {
-            position: fixed;
-            top: 26px;
-            left: 30px;
-            z-index: 1000;
-
-            padding-left: 14px;
-            border-left: 2px solid rgba(255, 255, 255, 0.35);
-        }
-
-        .bp-label {
-            display: block;
-            font-size: 10px;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: rgba(0, 0, 0, 0.55);
-        }
-
-        .bp-id {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #000000;
-        }
-
-        @media (max-width: 600px) {
-            .rera-blueprint {
-
-                left: 10px;
-                transform: scale(.7);
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .top-header {
-                position: fixed !important;
-                top: 10px !important;
-                right: 10px !important;
-                left: auto !important;
-                z-index: 99999 !important;
-
-                display: flex !important;
-                flex-direction: row !important;
-                gap: 8px !important;
-
-                width: auto !important;
-            }
-
-            .top-header a,
-            .top-header .top-btn {
-                display: inline-flex !important;
-                /* ✅ this is the key */
-                flex: 0 0 auto !important;
-                width: auto !important;
-                max-width: none !important;
-
-                padding: 6px 10px !important;
-                font-size: 12px !important;
-                line-height: 1 !important;
-
-                white-space: nowrap !important;
-            }
-        }
-
-
-        
-        @media (max-width: 600px) {
-            .Front {
-                position: fixed;
-                top: 55%;
-                left: 50%;
-            }
-        }
-
-        /* ══════════════════════════════════════
-           REQUEST CALL BACK — vertical side tab
-           ══════════════════════════════════════ */
-        .enquiry-btn {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10001;
-
-            /* Vertical text without rotation — stays fully on screen */
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-
-            padding: 22px 11px;
-            background: #0078be;
-            color: #fff;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 0.7px;
-            border: none;
-            border-radius: 8px 0 0 8px;   /* rounded left corners only */
-            cursor: pointer;
-            white-space: nowrap;
-            box-shadow: -4px 0 16px rgba(0,0,0,0.22);
-            transition: background 0.2s ease, padding 0.2s ease;
-        }
-        .enquiry-btn {
-    transition: opacity 0.3s ease, background 0.2s ease, padding 0.2s ease;
-}
-
-.enquiry-btn.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-        .enquiry-btn:hover {
-            background: #b8936a;
-            padding: 22px 14px;
-        }
-
-        @media (max-width: 600px) {
-            .enquiry-btn {
-                font-size: 11px;
-                padding: 16px 9px;
-            }
-        }
-
-        /* ══════════════════════════════════════
-           SLIDE-IN PANEL — overlay backdrop
-           ══════════════════════════════════════ */
-        .enquiry .overlay {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: stretch;
-            justify-content: flex-end;
-            /* invisible + non-interactive by default */
-            background: rgba(0, 0, 0, 0);
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-                z-index: 99999; /* higher than navbar */
-            pointer-events: none;
-            transition: background 0.35s ease, backdrop-filter 0.35s ease;
-        }
-
-        .enquiry .overlay.is-open {
-            background: rgba(0, 0, 0, 0.52);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            pointer-events: auto;
-        }
-
-        /* ══════════════════════════════════════
-           SLIDE PANEL — the actual form drawer
-           ══════════════════════════════════════ */
-        .enquiry .modal {
-            width: min(400px, 100vw);
-            height: 100%;
-            background: rgba(16, 17, 20, 0.1);
-            border-left: 1px solid rgba(255,255,255,0.08);
-            border-radius: 0;
-            box-shadow: -12px 0 40px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            /* Starts hidden off to the right */
-            transform: translateX(100%);
-            transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
-        }
-
-        /* Slides in when overlay gets .is-open */
-        .enquiry .overlay.is-open .modal {
-            transform: translateX(0);
-        }
-
-        /* Header row */
-        .enquiry .modal-header {
-            padding: 20px 20px 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        /* Gold accent bar */
-        .enquiry .modal-header::before {
-            content: '';
-            flex-shrink: 0;
-            width: 3px;
-            height: 22px;
-            background: #C9A87C;
-            border-radius: 2px;
-        }
-
-        .enquiry .modal-header .title {
-            flex: 1;
-            color: #fff;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 0.3px;
-        }
-
-        .enquiry .close {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.06);
-            color: #d7d7db;
-            cursor: pointer;
-            font-size: 15px;
-            transition: background 0.2s;
-        }
-        .enquiry .close:hover { background: rgba(255,255,255,0.14); }
-
-        /* Scrollable body */
-        .enquiry .modal-body {
-            padding: 20px;
-            overflow-y: auto;
-            flex: 1;
-        }
-
-        /* Form grid */
-        .enquiry .form {
-            display: grid;
-            gap: 12px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Shared input style */
-        .enquiry .input,
-        .enquiry .select,
-        .enquiry .phone {
-            width: 100%;
-            box-sizing: border-box;
-            background: #e9eaed;
-            border: 1px solid #cfd2d8;
-            border-radius: 10px;
-            padding: 12px 14px;
-            font-size: 14px;
-            color: #0f0f11;
-        }
-        .enquiry .input::placeholder { color: #b9bcc4; }
-
-        .enquiry .select {
-            appearance: none;
-            cursor: pointer;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M7 10l5 5 5-5" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-        }
-
-        .enquiry .phone {
-            display: flex;
-            padding: 0;
-        }
-        .enquiry .phone select {
-            appearance: none;
-            border: none;
-            border-right: 1px solid #cfd2d8;
-            padding: 0 10px;
-            min-width: 72px;
-            background: transparent;
-            color: #3a3a3f;
-            font-size: 14px;
-        }
-        .enquiry .phone input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            padding: 12px;
-            font-size: 14px;
-        }
-
-        .enquiry .agree {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 12px;
-            color: #a0a0a8;
-        }
-        .enquiry .agree a { color: #C9A87C; text-decoration: underline; }
-
-        .enquiry .submit {
-            width: 100%;
-            border: none;
-            border-radius: 10px;
-            padding: 13px;
-            font-weight: 700;
-            font-size: 15px;
-            background: #0078be;
-            color: #111;
-            cursor: pointer;
-            margin-top: 4px;
-            transition: background 0.2s ease;
-        }
-        .enquiry .submit:hover { background: #b8936a; }
-
-        /* Spinner on busy */
-        .submit[aria-busy="true"] {
-            position: relative;
-            pointer-events: none;
-            opacity: .8;
-        }
-        .submit[aria-busy="true"]::after {
+        .hero:after {
             content: "";
             position: absolute;
-            right: 14px;
+            inset: 0;
+            background: linear-gradient(90deg, #020907d9 0%, #02090791 28%, #02090720 65%, #0209070d), linear-gradient(0deg, #020806b3, transparent 38%, #0208061c);
+            pointer-events: none
+        }
+
+        header {
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 110px;
+            padding: 0 4.8vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo-box {
+            width: 175px;
+            height: 78px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .28);
+            transition: .3s ease
+        }
+
+        .logo-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .34)
+        }
+
+        .logo {
+            width: 100%;
+            height: auto;
+            display: block
+        }
+
+        .nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 52px
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: .12em;
+            opacity: .82
+        }
+
+        .nav a:hover,
+        .nav .active {
+            opacity: 1
+        }
+
+        .tag {
+            display: flex;
+            gap: 20px;
+            font-size: 10px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: #fffc;
+            line-height: 1.7
+        }
+
+        .tag:before {
+            content: "";
+            width: 1px;
+            height: 44px;
+            background: #fff8
+        }
+
+        .content {
+            position: absolute;
+            z-index: 4;
+            left: 5.2vw;
             top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
+            transform: translateY(-43%);
+            width: 650px;
+            max-width: 48vw
+        }
+
+        .welcome {
+            font-size: 12px;
+            letter-spacing: .42em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            color: #fff
+        }
+
+        h1 {
+            font: 500 clamp(58px, 6.7vw, 108px)/.82 "Playfair Display", serif;
+            letter-spacing: -.055em
+        }
+
+        h1 em {
+            display: block;
+            color: #e7d1aa;
+            font-style: italic;
+            font-size: .78em;
+            margin-top: 13px
+        }
+
+        .rule {
+            width: 80px;
+            height: 1px;
+            background: #fff;
+            margin: 31px 0 24px
+        }
+
+        .kicker {
+            font-size: 11px;
+            letter-spacing: .31em;
+            text-transform: uppercase;
+            color: #e7d1aa;
+            margin-bottom: 20px
+        }
+
+        .desc {
+            max-width: 450px;
+            color: #fffc;
+            font-size: 15px;
+            line-height: 1.65;
+            font-weight: 300
+        }
+
+        .explore {
+            margin-top: 34px;
+            width: 438px;
+            max-width: 100%;
+            height: 73px;
+            border: 1px solid #fff9;
+            border-radius: 50px;
+            background: #12130f5c;
+            backdrop-filter: blur(15px);
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 8px 7px 41px;
+            font-size: 11px;
+            letter-spacing: .38em;
+            text-transform: uppercase;
+            transition: .4s
+        }
+
+        .explore:hover {
+            transform: translateY(-3px);
+            background: #fff2
+        }
+
+        .arrow {
+            width: 58px;
+            height: 58px;
+            border: 1px solid #fffa;
             border-radius: 50%;
-            border: 2px solid currentColor;
-            border-right-color: transparent;
-            animation: spin .7s linear infinite;
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            transition: .4s
         }
-        @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
 
-        @media (max-width: 560px) {
-            .enquiry .modal { width: 100vw; }
+        .explore:hover .arrow {
+            transform: rotate(45deg)
         }
-        /* Poppins font for enquiry panel */
-.enquiry .modal,
-.enquiry .form,
-.enquiry .input,
-.enquiry .select,
-.enquiry .phone,
-.enquiry .title,
-.enquiry .submit,
-.enquiry .agree {
-    font-family: 'Poppins', sans-serif;
-}
+
+        .stats {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+            margin-top: 56px
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px
+        }
+
+        .stat b {
+            font: 400 31px Manrope
+        }
+
+        .stat span {
+            font-size: 9px;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+            color: #fff9
+        }
+
+        .divider {
+            height: 43px;
+            width: 1px;
+            background: #fff6
+        }
+
+        .community b {
+            font-size: 14px;
+            line-height: 1.2;
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .side {
+            position: absolute;
+            z-index: 4;
+            right: 3.2vw;
+            top: 49%;
+            writing-mode: vertical-rl;
+            transform: translateY(-50%);
+            font-size: 9px;
+            letter-spacing: .43em;
+            text-transform: uppercase;
+            color: #fff9
+        }
+
+        .scroll {
+            position: absolute;
+            z-index: 5;
+            left: 5.2vw;
+            bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 9px;
+            letter-spacing: .3em;
+            text-transform: uppercase
+        }
+
+        .scroll i {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #fff9;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-style: normal;
+            font-size: 16px
+        }
+
+        .video {
+            position: absolute;
+            z-index: 5;
+            right: 0;
+            bottom: 0;
+            width: 270px;
+            height: 132px;
+            background: #050907bf;
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px
+        }
+
+        .play {
+            width: 43px;
+            height: 43px;
+            border: 1px solid #fff9;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 11px
+        }
+
+        .video span {
+            font-size: 9px;
+            line-height: 1.7;
+            letter-spacing: .3em;
+            text-transform: uppercase
+        }
+
+        @media(max-width:900px) {
+            .nav {
+                gap: 22px
+            }
+
+            .nav a {
+                font-size: 10px
+            }
+
+            .tag {
+                display: none
+            }
+
+            .content {
+                max-width: 60vw
+            }
+        }
+
+        @media(max-width:700px) {
+            .hero .bg {
+                background-position: 60% center
+            }
+
+            .logo-box {
+                width: 130px;
+                height: 58px;
+                padding: 7px 13px;
+                border-radius: 14px
+            }
+
+            header {
+                height: 80px;
+                padding: 0 6vw
+            }
+
+            .nav,
+            .tag,
+            .side,
+            .video {
+                display: none
+            }
+
+            .content {
+                left: 7vw;
+                width: 86vw;
+                max-width: none;
+                top: 49%
+            }
+
+            h1 {
+                font-size: 17vw
+            }
+
+            .desc {
+                font-size: 13px
+            }
+
+            .explore {
+                height: 65px;
+                padding-left: 25px
+            }
+
+            .explore .arrow {
+                width: 51px;
+                height: 51px
+            }
+
+            .stats {
+                gap: 15px;
+                margin-top: 40px
+            }
+
+            .stat b {
+                font-size: 24px
+            }
+
+            .community {
+                display: none
+            }
+
+            .scroll {
+                left: 7vw
+            }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"
-   
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNGY9BHWQ8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-TNGY9BHWQ8');
-    </script>
-
-
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "RealEstateDeveloper",
-  "@id": "https://www.cminfiniaimmersive.com/#localbusiness",
-  "name": "CM Infinia",
-  "url": "https://www.cminfiniaimmersive.com/",
-  "description": "CM Infinia is a premium luxury residential real estate project in Ludhiana offering modern apartments with world-class amenities.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ludhiana",
-    "addressRegion": "Punjab",
-    "addressCountry": "IN"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Ludhiana"
-  },
-  "hasMap": "https://share.google/X8VB7NLa87mPyyAcZ",
-  "sameAs": [
-    "https://share.google/X8VB7NLa87mPyyAcZ"
-  ],
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "opens": "10:00",
-    "closes": "20:00"
-  }
-}
-</script>
 </head>
 
-<body> 
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N68LBFPB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <div class="top-header">
-        <a href="https://cminfinia.blogspot.com/" class="top-btn top-btn--ghost">Blog</a>
-        <a href="SubPages/About/About.html" class="top-btn top-btn--ghost">About US</a>
-        <a href="SubPages/Contact Us/Contact_Us.html" class="top-btn top-btn--accent">Contact US</a>
-    </div>
-
-
-
-    <div class="rera-blueprint">
-        <span class="bp-label">Regulatory Approval</span>
-        <span class="bp-id">PBRERA · LDH45 · PR1107</span>
-    </div>
-    <!-- Button (use JS click handler so message is built fresh on click) -->
-    <button id="waFab" class="wa-fab" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
-        <!-- simple inline WhatsApp SVG icon -->
-        <svg class="wa-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path
-                d="M21.02 11.63c0 5.38-4.36 9.74-9.74 9.74-1.24 0-2.42-.23-3.51-.65l-6.78 2 1.67-6.54a9.8 9.8 0 0 1-1.12-4.55c0-5.38 4.36-9.74 9.74-9.74s9.74 4.36 9.74 9.74Z"
-                style="fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:.25px" />
-            <path
-                d="M15.45 13.68c-.32-.11-.54-.21-.75.11s-.86 1.07-.97 1.29c-.11.21-.32.21-.54.11-.32-.11-1.4-.43-2.58-1.5-.97-.86-1.61-1.83-1.83-2.15s0-.54.11-.75l.43-.43c.11-.11.21-.32.32-.54s.04-.43-.02-.64c-.06-.16-.64-1.72-.97-2.36-.21-.54-.43-.43-.64-.43h-.54c-.18 0-.48.06-.75.35-.27.28-1.02 1.01-1.02 2.47s0 2.79 1.18 4.19 3.22 2.9 5.16 3.65c1.93.75 2.15.54 2.58.54s1.72-.54 2.04-1.29.25-1.24.21-1.4-.11-.42-.38-.57l-1.05-.64Z"
-                style="fill:#25d366" />
-        </svg>
-    </button>
-    <div id="waLabel" class="wa-label">Chat on WhatsApp</div>
-    <!-- Splash / Welcome Overlay -->
-    <div id="splash" class="splash" aria-live="polite" role="status">
-        <div class="splash__backdrop"></div>
-        <div class="splash__content" role="img" aria-label="Powered by BetterSide">
-            <div class="splash__text">Powered by <strong>BetterSide.in</strong></div>
-        </div>
-    </div>
-    <!-- Quick interaction hint (appears for ~2–3s) -->
-    <div id="ui-hint" class="ui-hint" aria-live="polite" role="status">
-        <!-- shown on mouse/trackpad devices -->
-        <div class="ui-hint__row ui-hint__desktop">
-            <!-- mouse icon (inline SVG) -->
-            <svg width="18" height="24" viewBox="0 0 18 24" aria-hidden="true">
-                <path d="M9 1c3.9 0 7 3.1 7 7v8c0 3.9-3.1 7-7 7s-7-3.1-7-7V8c0-3.9 3.1-7 7-7z" fill="white"
-                    opacity=".18" />
-                <rect x="8" y="4" width="2" height="5" rx="1" fill="white" />
-                <rect x="5" y="10" width="8" height="9" rx="4" fill="white" opacity=".4" />
-            </svg>
-            <span>Click Tower's to Select Floors</span>
-        </div>
-
-        <!-- shown on touch devices -->
-        <div class="ui-hint__row ui-hint__touch">
-            <!-- finger icon (inline SVG) -->
-            <svg width="18" height="24" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    d="M12 2a4 4 0 014 4v4h1.2a2.8 2.8 0 012.8 2.8V16c0 3.3-2.7 6-6 6H9.5A5.5 5.5 0 014 16.5V11a3 3 0 016 0v3h1V6a4 4 0 011-2.7z"
-                    fill="white" opacity=".28" />
-                <rect x="11" y="5" width="2" height="9" rx="1" fill="white" />
-            </svg>
-            <span>Click on Tower's To Select Floor</span>
-        </div>
-    </div>
-
-
-    <!-- <div class="context-chip" id="projectTag" aria-hidden="true">
-        <div class="mdb">
-            <img src="images/Thumbnail/MDB-logo.png" alt="MDB Logo" class="pdf-icon"
-                onload="this.nextElementSibling.style.display='none'" />
-            <span class="fallback-text">MDB</span>
-        </div>
-        <div class="lutyen">Lutyen Residence</div>
-    </div> -->
-
-
-
-
-
-    <!-- Info Card Modal -->
-    <div id="infoCard" class="info-card">
-        <div class="info-content">
-
-            <h2 id="modalTitle">Tower_A</h2>
-
-            <div class="image-placeholder">
-                <img src="images/Thumbnail/Tower_A-B.webp" alt="Tower A" />
+<body>
+    <div class="hero">
+        <div class="bg"></div>
+        <header>
+            <a class="logo-box" href="#"><img class="logo" src="assets/hero-homes-logo.png" alt="Hero Homes"></a>
+            <!-- <nav class="nav">
+                <a class="active" href="#">Home</a><a href="#project">The Project</a><a
+                    href="#amenities">Amenities</a><a href="#location">Location</a><a href="#gallery">Gallery</a>
+            </nav> -->
+            <div class="tag">A better<br>tomorrow</div>
+        </header>
+        <main class="content">
+            <div class="welcome">Welcome to</div>
+            <h1>Hero Homes<em>Phase 2</em></h1>
+            <div class="rule"></div>
+            <div class="kicker">Spaces for a brighter tomorrow</div>
+            <p class="desc">Thoughtfully designed homes, surrounded by nature, connected to everything that matters.</p>
+            <a class="explore" href="map/index.html"><span>Explore the project</span><span class="arrow">→</span></a>
+            <div class="stats">
+                <div class="stat"><b>5</b><span>Towers</span></div><i class="divider"></i>
+                <div class="stat"><b>32</b><span>Floors</span></div><i class="divider"></i>
+                <div class="stat community"><b>A brighter<br>community</b><span>A new chapter</span></div>
             </div>
-            <div class="info-details" id="details"></div>
-            <button class="explore-btn" id="navigateButton">Explore</button>
-        </div>
+        </main>
+        <div class="side">Modern living&nbsp;&nbsp; | &nbsp;&nbsp;Green tomorrow</div>
+        <!-- <div class="scroll"><i>↓</i><span>Scroll to discover</span></div> -->
+        <!-- <div class="video">
+            <div class="play">▶</div><span>Watch<br>the vision</span>
+        </div> -->
     </div>
-
-
-    <div class="Front">
-        <div class="image-wrapper">
-            <link rel="preload" as="image" href="images/Home.jpg" />
-
-            <img id="mainImage" src="images/Thumbnail/Home_Low.webp" data-full="images/Home.jpg" alt="Home"
-                fetchpriority="high" decoding="async" width="3840" height="5830" class="blur-up" />
-            <div class="Cutout">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 3840 5830">
-                    <path id="Tower_A" data-link="Tower_A.html" data-name="Tower_A"
-                        data-img="images/Thumbnail/Tower_A.jpg"
-                        d="m693.2 2402 46.7 22.7 16.2 812.4 19.8 13.1v26.2l-29.5 13.8 109.1 57.7 165.1-65.1 5.3 3.3 43.3-16.7-.7-9.9-2.2-.2-.4-21.8 9-4.4v10.3l7.2-2.2-1.2-10.8 33.8-14.1-.6 11.1 6.9-2-1.1-11.2 50.8-21.3v9.5l7.4-1.3-1-9.9 52.8-22.6v9.6l7.5-1.4-.3-11.6 31.4-12.9.8 9.4 6.2-1v-11.4l26.7-10.8v10.3l6.9-1.2v-11.8l4.4-.4-1.2 15.2 20.2 7.8 39.7-14.8-1.3-34.6 101.9-42 .4 8.8 6.5-.3v-11.1l52.1-21.5.6 9.2 7.3-1.5v-10.8l29.3-12.4v9.2l7.3-1.2v-10.9l26.5-11.2v9.1l5.6-.3v-11l4.9-3.9-.8 18.9 17.4 8.2 42.2-18.5-.4-9.4-2.1-.2.3-21.4 10-3.3-1.1 9.1 6.5-1.9-1.3-9.8 31.6-12.8-.4 9.1 6.7-1.2v-10.1l77.2-33.3V2294l-110.9-70 .1-77.9 73.8-30.8-48.7-35.2-112.6-53.2-862.5 340.4z"
-                        class="st0" />
-                    <path id="Tower_B" data-link="Tower_B.html" data-name="Tower_B"
-                        data-img="images/Thumbnail/Tower_B.jpg"
-                        d="m2025.4 2345.6-55.1 33.2 52 24.7v36.6l-52.8 22.7 6.3 3.8-.6 8.2-5.2 1v3.9l6 1.2-2.7 82.1-56.8-23.5-10.7 2-1.8-6.3-7.7-.3v-3.5l.8-3.8-1.8-1.3-2.8-5.3v-3.3s-3.7-1.3-4.3-1.7c-.7-.3-6.5-5.5-6.5-5.5l-6.8 2-6.5 4-3.2 4v6.8l-5.8 6.3-4.8 8.3-4 6.2-6.7 6.5v16.8l-4.5 1.3v4.5h-5.5l-1.3 3.7 2.7 646.7 18.6 9.8-.1 15.2 9.6-.5.2-9.9 43.6 23.5-.4 14.4 9.5-3-.1-8.2 30.3 14.6 29.2-12.4-2 31 35.9 18.1-.4-6.2 45.6 22.8-.7 13.8h9.4l1.4-9 43.9 21.2-1.4 15.8 9.3-3 1.1-7.2 37.4 19-.8 14.6 5 1.3 1-13.8 48.5 23.6v14.4h8.8l.4-10.1 4.6 2.6-.2 10.3 3.1.6v-10.3l7.1 5-.7 10.9h8.3l-1.7-9.1 10.9 5.3 29.7-12.4-2.2 31.3 82 35.9-.3 14.4 9.9-.8.9-9.7 44.8 23.9-.7 15.3 7-3.4.4-9.3 40.7 20.6.6 16.3 8.9-3.8-.8-8.3 45.3 22.6v15.9l9.9-4-1-7.7s32 16.1 32.4 16.1 30.7-13.6 30.7-13.6l-1.9 32.6 36.1 17.6v-4.6l46.7 23.3 1.2 15.8 9.2-2.3.4-8.3 49.3 23.6.4-11.3-3.3-6.7-8-4.4-.6-3.9 9-3.1.7-3.8-1.7-5.8 4.8-4.5 2-3.8 8.9-4.6s13.9 4 14.2 4 6.8 1.7 6.8 1.7l198.1-88.1v-4.7l4.4-8.2 7.3-3.6 9.8 2.9 8-1.3 16-6 13.2-646.8v-2.7l4.3-9.2s-3.5-4.7-4-5-4.8-2.3-4.8-2.3l-5.3-4.3-5.5-3.5s-9.7-4.3-10.5-4.3-1.8-.5-4.7-.8c-2.8-.3-4.2-5.5-4.2-5.5l-9.5-2-11.8-11-17.5-3-7.3 2.3s-6-6.5-6.8-6.5-12.2 8.7-12.2 8.7-11.7 5.2-12.5 5.2-2.3 8.5-2.3 8.5l-29.7-9.3-3-5.5-1.7-5.8-.5-121.3 4.8-2.2-.7-3.6-4.2-.5v-8.4h3.8l2.2-6.9 5.9-5.6-46.7-33.8 5.8-2.4v-5.6l-706.4-325.1-110.7 45.4z"
-                        class="st0" />
-                </svg> -->
-                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 3840 5830">
-                    <path id="Tower_C" data-link="Tower_C.html" data-name="Tower_E-F"
-                        data-img="images/Thumbnail/Tower_C.jpg"
-                        d="m1587.44 2135.33-46 26-38-13h-14.5l-66.67 36.83 5.17 2.5-6.33 2.17 1.17 38.83-105.17 60.33-49.33-16.33-77 40.5 1.83 45.33-50.83 27v9.33l2.33 1.33 1.17 37.5-29.33 21.83-1.33 17.83 14.67 4.83-12.39 12.89-.44 11.89 17.33 5.11.11 2.11-17.44 13 1.33 11.78 17.33 6.22-1.33 3.11-14 10.78-1.78 12.11 17.67 6.44-.11 2.67-14.78 10.67-.44 12.33 17.44 7.44-.22 2.56-14.22 10.78-1.22 12.22 16.44 6.78-.56 3.56-14.78 9.78.33 13.89 17.33 4.78-.56 2.22-15.11 10.78-.22 13.56 16.56 6.11-2.78 3.89-11.56 8.56-1.56 13.22 17.33 6.11-.33 3.56-15 9.78-.78 12.78 17.44 6-.44 2.56-16.33 11.44.22 11.56 18.22 7.11-14.44 12.67-1.78 11.78 17.44 6.67-15.44 12.78-1.22 11.89 16.44 8.44-13.78 10.78-1.33 12.78 17.78 6.67-18.33 16.89-2.67 6 21.56 9.22-14.78 12.56-1.44 12.89 17.89 5.56s-15.44 14.56-15.56 14.89-.22 9.44-.22 9.44l17.11 7.78-16.11 12.56-.22 12.22 18.44 6.67-15.11 11.44-1.89 12 18 6.67-16 12.67-.89 12.44 18 5.67-14.89 12.11-.89 13.22 15.67 6.11-16.89 12 .89 11 16.33 7.56-12.89 13.22-1 11.67 16.22 6.22-14.11 10.11-1.56 13.67 17 7.11-13.33 10.44-2.33 13.44 15.78 6.56-19.67 17.89-1.11 13.67 14.78 5.44-13.56 12.67-.67 11.89 16.89 6-14.22 12.44-.11 11.22 14.11 6.33-12.44 9.44-.78 15.11 14.11 5.11-10.67 9-2.67 16 14.22 5.33-12.11 10.22-.56 14.78 12.56 4.44-11 14.67-.56 10 14.11 6.33-10.67 12.56-2 10.33 14.44 7.22-12.22 9.11-1.44 14.11 16.78 6.44-13.56 11.22-.28 12.33 162.11 67.89 107.28-56.94 334.78-249.67-21.33-1112-148.56-52Z"
-                        class="st0" />
-                    <path id="Tower_B" data-link="Tower_B.html" data-name="Tower_C-D"
-                        data-img="images/Thumbnail/Tower_B.jpg"
-                        d="m2149.11 2146.78-127.33 42.89-1.11 41.11-55.78 18.44-7.06 1034.67-89.55-45.17-110.95 60.61-21.33-1112-148.56-52 52.34-28.77v-41.78l33.78-19.78 6.44 1.33 7.33-4.22 45.11 13.78 87.34-52 131.33 41.11-28.22 14.44 53.78 16.23 42.66-11.78 103.34 64.89-1.78 8.66 10.89-3.55z"
-                        class="st0" />
-                    <path id="Tower_A" data-link="Tower_A.html" data-name="Tower_A-B"
-                        data-img="images/Thumbnail/Tower_A.jpg"
-                        d="m2576 2464.17-18.83 6.66 17 12.17v10.67l-18.17 7.83 16.17 13.33.83 13.34-19 4.5 17.33 14 1 11.83-18 7.5 16 12 2 14.67-18.16 5.33 15.16 16 .84 11.17-17.67 6.5 16.5 15v11.16l-17.17 5 15.5 14.5.84 12.17-17.17 6.5 14.83 12.83 1 12.34-17.5 5.66 15.5 14.5v12.5l-15.83 5.5 14.33 13.17 1.5 13.83-16 6.17 14.84 12.83v12.5l-17.34 4.67 15.67 15.67.83 12.16-18.5 4.5 17 14.67-.83 11.33-18.5 5.5 17 13.5 1.5 12.34-17.5 6.33 15 13.33v11.84l-16.17 6 15.17 12.66 1 12.17-17.67 6.17 15.67 12.16 2 12.67-17.67 7.5 15.67 12.5v11.5l-16.67 7.67 14.34 12.33 1.5 11-15.67 7.33 13.5 9.84 2.17 13.66-18.67 5.67 15.33 10.5.17 14.33-16.17 7.34 16.5 11.5v12l-17.66 6.66 14.83 12.5 2 10.84-15.5 8.5 12.83 10.5 1.67 12.83-15.17 6.17 18.84 17.83 1 12.67-11.67 6.83 11 10.67v14l-16.5 6.16 13.5 10.17 1.67 12.33-16.5 6.84 17.83 13.5-1.5 10-17.67 7.5 15 10 .67 13.83-14.17 5.33 12.67 10v3.6l-78.28 33.51-5.11-5.33-56.55 20.78-.73 6.72-2.66-.67-8.17 5.12-1.11 4.77 3.44 3.78-86 29.33c-16.78 10.71-26.49 20.67-30.19 30-128.66-86.6-243.69-167.24-327.7-234.38l1.39-9.17 7.06-1034.67 55.78-18.44 1.11-41.11 127.33-42.89 14.17 6.22 41.89-13.22 3.89 2.55 8.44-3.11 63.11 39.34-1.89 40.77 101.56 60.67 42-12.78 3.66 1.89 7.23-2.67 68.66 40.67-2.83 41.22 51.17 30.5v9.34l-2.67.5V2423l28.5 27.17z"
-                        class="st0" />
-                </svg>
-                <!-- New: overlay that sits exactly on top of the image -->
-
-            </div>
-        </div>
-    </div>
- <!-- ══ SLIDE-IN ENQUIRY PANEL ══ -->
-  <div class="enquiry">
-    <div class="overlay" id="enquiryOverlay" aria-hidden="true">
-        <div class="modal" role="dialog" aria-labelledby="enquiryTitle">
-            <div class="modal-header">
-                <div id="enquiryTitle" class="title">Request Callback</div>
-                <button class="close" id="closeBtn" aria-label="Close">✕</button>
-            </div>
-            <div class="modal-body">
-                <form id="enquiryForm" class="form" novalidate>
-
-                    <input class="input" name="fullName" placeholder="Full Name" required />
-
-                    <div class="phone">
-                        <select name="dialCode" aria-label="Country Code">
-                            <option>+91</option>
-                            <option>+971</option>
-                            <option>+44</option>
-                            <option>+1</option>
-                        </select>
-                        <input
-                            type="tel"
-                            name="phone"
-                            placeholder="Phone Number"
-                            maxlength="10"
-                            pattern="[0-9]{10}"
-                            inputmode="numeric"
-                            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-                            required
-                        />
-                    </div>
-
-                    <input class="input" name="city" placeholder="City" required />
-
-                    <input
-                        class="input"
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                        required
-                    />
-
-                    <select class="input select" name="preferredTime" required>
-                        <option value="" disabled selected>Preferred Time to Call</option>
-                        <option value="morning">Morning</option>
-                        <option value="afternoon">Afternoon</option>
-                        <option value="evening">Evening</option>
-                    </select>
-<button class="submit" type="submit">Request a Call Back</button>
-                                    <a href="tel:+919876543210" class="call-btn">
-    📞 Call Now
-</a>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<button class="enquiry-btn" id="openEnquiry">Request Call Back</button>
-
-   
-    <!-- Hotspot overlay (empty container, JS will size/position it) -->
-    <div class="hs-layer" id="hsLayer">
-        <!-- Example hotspots: use % relative to the image -->
-        <button class="hs-dot" style="top:66%; left:46%;" onclick="location.href='SubPages/GodEye/BasketBall.html'">
-            <img src="images/360_img.png" alt="BasketBall">
-        </button>
-
-        <button class="hs-dot" style="top:66%; left:46%;" onclick="location.href='SubPages/GodEye/CricketArea.html'">
-            <img src="images/360_img.png" alt="CricketArea">
-        </button>
-
-        <button class="hs-dot" style="top:61.4%; left:48%;" onclick="location.href='SubPages/GodEye/Garden.html'">
-            <img src="images/360_img.png" alt="Garden">
-        </button>
-
-        <button class="hs-dot" style="top:63.8%; left:38.5%;" onclick="location.href='SubPages/GodEye/KidArea.html'">
-            <img src="images/360_img.png" alt="KidArea">
-        </button>
-
-        <button class="hs-dot" style="top:62.5%; left:32.5%;" onclick="location.href='SubPages/GodEye/PetArea.html'">
-            <img src="images/360_img.png" alt="Commercial">
-        </button>
-
-        <button class="hs-dot" style="top:63.6%; left:52%;" onclick="location.href='SubPages/GodEye/SidePark.html'">
-            <img src="images/360_img.png" alt="Commercial">
-        </button>
-    </div>
-    <!-- Bottom Center Panel -->
-    <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
-        <div class="jumpbar-inner">
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Garden.html'">Garden</button>
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/SidePark.html'">Side Park</button>
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/CricketArea.html'">Cricket Pitch</button>
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/BasketBall.html'">BasketBall Area</button>
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/KidArea.html'">Kid Area</button>
-            <button class="jumpchip" onclick="location.href='SubPages/GodEye/PetArea.html'">Pet Area</button>
-            <button class="jumpchip" onclick="location.href='SubPages/Tower_Mall.html'">Club House</button>
-            <button class="jumpchip" onclick="location.href='SubPages/Tower_A.html'">Tower A-B</button>
-            <button class="jumpchip" onclick="location.href='SubPages/Tower_B.html'">Tower C-D</button>
-            <button class="jumpchip" onclick="location.href='SubPages/Tower_C.html'">Tower E-F</button>
-            <!-- add more as you like -->
-        </div>
-    </nav>
-
-    <script src="JS/b0htmwbcmz.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const paths = document.querySelectorAll('.Cutout path');
-            const modal = document.getElementById('infoCard');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalButton = document.getElementById('navigateButton');
-            const imagePlaceholder = document.querySelector('.image-placeholder img');
-
-            let selectedPath = null;
-            let currentLink = '';
-
-            // Handle path clicks
-            paths.forEach(path => {
-                const link = path.getAttribute('data-link');
-                const name = path.getAttribute('data-name') || 'Building Info';
-
-                if (link) {
-                    path.addEventListener('click', (e) => {
-                        e.stopPropagation();
-
-                        // Deselect previously selected path
-                        if (selectedPath && selectedPath !== path) {
-                            selectedPath.classList.remove('selected');
-                        }
-
-                        selectedPath = path;
-                        selectedPath.classList.add('selected');
-
-                        // Update modal info
-                        currentLink = `SubPages/${link}`;
-                        modalTitle.textContent = name;
-
-                        // 🔹 Load image dynamically based on data-name
-                        const imagePath = `images/Thumbnail/${name}.webp`; // Example: images/Tower_A.jpg
-                        imagePlaceholder.src = imagePath;
-                        imagePlaceholder.alt = name;
-
-                        // Show modal
-                        modal.style.display = 'flex';
-                    });
-                }
-            });
-
-            // Navigate button click
-            modalButton.addEventListener('click', () => {
-                if (currentLink) {
-                    window.location.href = currentLink;
-                }
-            });
-
-            // Click outside modal to close
-            document.addEventListener('click', (e) => {
-                const isPath = e.target.closest('path');
-                const isModal = e.target.closest('.info-content');
-                if (!isPath && !isModal) {
-                    modal.style.display = 'none';
-                    if (selectedPath) {
-                        selectedPath.classList.remove('selected');
-                        selectedPath = null;
-                    }
-                    currentLink = '';
-                    modalTitle.textContent = '~';
-                }
-            });
-        });
-    </script>
-
-
-
-    <script>
-        (function () {
-            const img = document.querySelector('.image-wrapper img');
-            const layer = document.getElementById('hsLayer');
-            if (!img || !layer) return;
-
-            // Read the actual on-screen rectangle of the image and pin the overlay to it
-            function doSync() {
-                const r = img.getBoundingClientRect();
-                layer.style.top = r.top + 'px';
-                layer.style.left = r.left + 'px';
-                layer.style.width = r.width + 'px';
-                layer.style.height = r.height + 'px';
-            }
-
-            // Run the sync AFTER layout has fully settled
-            function syncAfterLayout() {
-                requestAnimationFrame(() => requestAnimationFrame(doSync));
-            }
-
-            // Initial syncs
-            if (img.complete) syncAfterLayout();
-            else img.addEventListener('load', syncAfterLayout, { once: true });
-            window.addEventListener('load', syncAfterLayout, { once: true });
-
-            // On resize / orientation
-            window.addEventListener('resize', syncAfterLayout);
-            window.addEventListener('orientationchange', () => {
-                syncAfterLayout();
-                // extra pass for mobile browsers that "settle" a moment later
-                setTimeout(syncAfterLayout, 250);
-            });
-
-            // On aspect-ratio media query flips
-            const mqPortrait = window.matchMedia('(max-aspect-ratio: 3840/5830)');
-            const mqLandscape = window.matchMedia('(min-aspect-ratio: 3840/5830)');
-            if (mqPortrait.addEventListener) {
-                mqPortrait.addEventListener('change', syncAfterLayout);
-                mqLandscape.addEventListener('change', syncAfterLayout);
-            } else if (mqPortrait.addListener) { // Safari <14
-                mqPortrait.addListener(syncAfterLayout);
-                mqLandscape.addListener(syncAfterLayout);
-            }
-
-            // Watch the image box itself
-            if ('ResizeObserver' in window) {
-                new ResizeObserver(syncAfterLayout).observe(img);
-            }
-        })();
-    </script>
-    <script src="JS/Notification/2ruet93mi4.js"></script>
-
-
-
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const mq = window.matchMedia('(max-width: 600px)');
-
-            const desktopPositions = {
-                Tower_A: { left: 61, top: 50 },
-                Tower_B: { left: 48, top: 48 },
-                Tower_C: { left: 35, top: 50 }
-            };
-            const mobilePositions = {
-                Tower_A: { left: 61, top: 50 },
-                Tower_B: { left: 48.5, top: 48 },
-                Tower_C: { left: 35, top: 50 }
-            };
-
-            function runPins() {
-                initTowerPins({
-                    svgSelector: '.Cutout svg',
-                    layerSelector: '#hsLayer',
-                    viewBox: [3840, 5830],
-                    positions: mq.matches ? mobilePositions : desktopPositions
-                });
-            }
-
-            runPins();                   // initial
-            mq.addEventListener?.('change', runPins);
-            // Safari fallback:
-            if (!mq.addEventListener) mq.addListener(runPins);
-
-            // Also re-run after your image/layer sync settles (optional but safer)
-            window.addEventListener('resize', () => requestAnimationFrame(runPins));
-            window.addEventListener('orientationchange', () => setTimeout(runPins, 250));
-        });
-    </script>
-   <!-- ══ Panel open / close logic ══ -->
-<script>
-    const overlay  = document.getElementById('enquiryOverlay');
-    const openBtn  = document.getElementById('openEnquiry');
-    const closeBtn = document.getElementById('closeBtn');
-
-    function openPanel() {
-        overlay.classList.add('is-open');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        openBtn.classList.add('is-hidden');
-    }
-
-    function closePanel() {
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        openBtn.classList.remove('is-hidden');
-    }
-
-    openBtn.addEventListener('click', openPanel);
-    closeBtn.addEventListener('click', closePanel);
-
-    // Click on dim backdrop → close
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closePanel();
-    });
-
-    // Escape key → close
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePanel();
-    });
-</script>
-
-
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const paths = document.querySelectorAll('.Cutout path');
-            const infoCard = document.getElementById('infoCard');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalButton = document.getElementById('navigateButton');
-            const detailsEl = document.getElementById('details');          // optional details container
-            const imgEl = document.querySelector('.image-placeholder img'); // if you show an image
-
-            let selectedPath = null;
-            let currentLink = '';
-
-            // 1) Configure content for each tower here
-            const INFO = {
-                Tower_A: {
-                    title: 'Tower A-B',
-                    lowImg: 'images/Thumbnail/Icon/Tower_A.webp',
-                    img: 'images/Thumbnail/Icon/Tower_A.jpg',
-                    link: 'SubPages/Tower_A.html',
-                    detailsHTML: `
-          <div><strong>Total Units:</strong> 128 </div>
-          <div><strong>Per Tower Units:</strong> 64 </div>
-          <div><strong>Area:</strong>4600 sq.ft.</div>
-          <div><strong>Penthouse:</strong>2</div>
-          <div><strong>Area:</strong>14000 sq.ft.</div>
-        `
-                },
-                Tower_B: {
-                    title: 'Tower C-D',
-                    lowImg: 'images/Thumbnail/Icon/Tower_B.webp',
-                    img: 'images/Thumbnail/Icon/Tower_B.jpg',
-                    link: 'SubPages/Tower_B.html',
-                    detailsHTML: `
-          <div><strong>Total Units:</strong> 96 </div>
-          <div><strong>Per Tower Units:</strong> C-32 : D-64</div>
-          <div><strong>C Area:</strong>4800 sq.ft.</div>
-          <div><strong>D Area:</strong>6300 sq.ft.</div>
-          <div><strong>Penthouse:</strong>C-1 : D-2</div>
-          <div><strong>C Area:</strong>15000 sq.ft.</div>
-          <div><strong>D Area:</strong>17000 sq.ft.</div>
-        `
-                },
-                Tower_C: {
-                    title: 'Tower E-F',
-                    lowImg: 'images/Thumbnail/Icon/Tower_C.webp',
-                    img: 'images/Thumbnail/Icon/Tower_C.jpg',
-                    link: 'SubPages/Tower_C.html',
-                    detailsHTML: `
-          <div><strong>Total Units:</strong> 128 </div>
-          <div><strong>Per Tower Units:</strong> 64 </div>
-          <div><strong>Area:</strong>4600 sq.ft.</div>
-          <div><strong>Penthouse:</strong>2</div>
-          <div><strong>Area:</strong>14000 sq.ft.</div>
-        `
-                }
-            };
-
-            function setExploreState(hasLink) {
-                if (!modalButton) return;
-                modalButton.disabled = !hasLink;
-                modalButton.style.opacity = hasLink ? '1' : '0.6';
-                modalButton.style.pointerEvents = hasLink ? 'auto' : 'none';
-                modalButton.title = hasLink ? '' : 'No page linked';
-            }
-            // scoped only to this script (modal image)
-            function swapModalImage(imgEl, highSrc, lowSrc) {
-                if (!imgEl || !highSrc) return;
-
-                // optional low-res (fallback to placeholder if not provided)
-                if (lowSrc) {
-                    imgEl.src = lowSrc;
-                }
-
-                imgEl.classList.remove('is-loaded');   // reset blur state if reused
-                imgEl.classList.add('blur-up');        // ensure blur-up style is applied
-
-                const hi = new Image();
-                hi.decoding = 'async';
-                hi.src = highSrc;
-
-                const done = () => {
-                    imgEl.src = highSrc;
-                    imgEl.classList.add('is-loaded');
-                };
-
-                if (typeof hi.decode === 'function') {
-                    hi.decode().then(done).catch(done);
-                } else {
-                    hi.onload = done;
-                    hi.onerror = done;
-                }
-            }
-
-            // if you have a consistent low-res naming: file.ext -> file_Low.webp
-            function toLowResPath(fullPath) {
-                // tweak to match your actual low-res naming or return null to skip
-                return fullPath.replace(/(\.\w+)$/, '_Low.webp');
-            }
-
-            function render(info) {
-                // Title
-                modalTitle.textContent = info.title || '~';
-
-                // Image (only modal image is affected)
-                if (imgEl && info.img) {
-                    const high = info.img;
-                    const low = toLowResPath(high); // or set to null if you don't keep _Low.webp files
-                    imgEl.alt = info.title;
-                    swapModalImage(imgEl, high, low);
-                }
-
-                // Details
-                if (detailsEl) {
-                    detailsEl.innerHTML = info.detailsHTML || '';
-                }
-
-                // Link
-                currentLink = info.link || '';
-                setExploreState(!!currentLink);
-
-                // Show card
-                infoCard.style.display = 'flex';
-            }
-            const KEY_MAP = {
-                "Tower_E-F": "Tower_C",
-                "Tower_C-D": "Tower_B",
-                "Tower_A-B": "Tower_A"
-            };
-
-
-            // 2) Wire up just the two paths
-            paths.forEach(path => {
-                path.addEventListener('click', (e) => {
-                    e.stopPropagation();
-
-                    // which tower?
-                    const key = (path.getAttribute('data-name') || path.id || '').trim();
-                    const normalizedKey = KEY_MAP[key] || key;
-                    const info = INFO[normalizedKey];
-
-                    if (!info) return; // ignore any other paths
-
-                    // selection styling
-                    if (selectedPath && selectedPath !== path) selectedPath.classList.remove('selected');
-                    path.classList.add('selected');
-                    selectedPath = path;
-
-                    render(info);
-                });
-            });
-
-            // Explore -> navigate
-            modalButton?.addEventListener('click', () => {
-                if (currentLink) window.location.href = currentLink;
-            });
-
-            // Click outside -> close
-            document.addEventListener('click', (e) => {
-                const isPath = e.target.closest('path');
-                const isModal = e.target.closest('.info-content');
-                if (!isPath && !isModal) {
-                    infoCard.style.display = 'none';
-                    if (selectedPath) selectedPath.classList.remove('selected');
-                    selectedPath = null;
-                    currentLink = '';
-                    modalTitle.textContent = '~';
-                    setExploreState(false);
-                }
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const splash = document.getElementById("splash");
-            if (!splash) return;
-
-            // lock scroll while splash is visible
-            document.body.classList.add("splash-active");
-
-            // how long splash shows (ms)
-            const SHOW_MS = 2000;
-            const FADE_MS = 600; // must match CSS transition
-
-            setTimeout(() => {
-                // start fade-out
-                splash.classList.add("is-hidden");
-
-                // after fade, remove overlay and unlock scroll
-                setTimeout(() => {
-                    splash.remove();
-                    document.body.classList.remove("splash-active");
-                }, FADE_MS);
-            }, SHOW_MS);
-        });
-    </script>
-
-
-
-
-    <script src="JS/ky0nwmerow.js"></script>
-
-
-
-    <script src="JS/bz021sxwxo.js"></script>
-    <script src="JS/ekdxgbwr0o.js"></script>
-    <script src="JS/5guwuzaijb.js"></script>
-
-    <!-- =========================================================
-         LOCATION CONSENT SYSTEM
-         Replaces the old automatic GPS + IP fallback tracker.
-         ========================================================= -->
-
-    <script>
-        // ============================================================
-        // GOOGLE APPS SCRIPT WEB APP
-        // This is the working endpoint from index_1.
-        // ============================================================
-        const GOOGLE_SCRIPT_URL =
-            "https://script.google.com/macros/s/AKfycbzBKNKyRmMEuNtxuZnpnlflLXT5t1vMl5YPco-Yfrrg5dcQJWSFA5nirZf4eufZ2kVz/exec";
-
-        function sendLocationToGoogleSheet(data) {
-            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
-                console.warn("Google Apps Script URL has not been configured.", data);
-                return;
-            }
-
-            // no-cors is intentional. Apps Script receives the POST;
-            // the browser does not need to read the response.
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: JSON.stringify(data)
-            }).catch(error => {
-                console.error("Could not send location data to Google Sheet:", error);
-            });
-        }
-
-        function getLocationBaseData() {
-            return {
-                timestamp: new Date().toISOString(),
-                page: window.location.href,
-                userAgent: navigator.userAgent
-            };
-        }
-
-        function requestLocation() {
-            if (!navigator.geolocation) {
-                const data = {
-                    ...getLocationBaseData(),
-                    permission: "Unsupported",
-                    errorCode: "",
-                    error: "Geolocation is not supported by this browser."
-                };
-
-                sendLocationToGoogleSheet(data);
-
-                return;
-            }
-
-            navigator.geolocation.getCurrentPosition(
-
-                // ====================================================
-                // SUCCESS
-                // ====================================================
-                function (position) {
-
-                    const data = {
-                        ...getLocationBaseData(),
-
-                        permission: "Granted",
-
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-
-                        accuracy_meters: position.coords.accuracy,
-
-                        altitude: position.coords.altitude,
-                        altitude_accuracy_meters:
-                            position.coords.altitudeAccuracy,
-
-                        heading: position.coords.heading,
-                        speed: position.coords.speed,
-
-                        errorCode: "",
-                        error: ""
-                    };
-
-                    console.log("LOCATION RECEIVED:", data);
-
-                    sendLocationToGoogleSheet(data);
-
-                },
-
-                // ====================================================
-                // ERROR
-                // ====================================================
-                function (error) {
-
-                    console.log("LOCATION ERROR:", error);
-
-                    let reason = "Unknown location error.";
-
-                    if (error.code === error.PERMISSION_DENIED) {
-                        reason = "Permission denied by visitor.";
-                    } else if (error.code === error.POSITION_UNAVAILABLE) {
-                        reason = "Location information unavailable.";
-                    } else if (error.code === error.TIMEOUT) {
-                        reason = "Location request timed out.";
-                    }
-
-                    const data = {
-                        ...getLocationBaseData(),
-
-                        permission:
-                            error.code === error.PERMISSION_DENIED
-                                ? "Rejected"
-                                : "Failed",
-
-                        latitude: "",
-                        longitude: "",
-                        accuracy_meters: "",
-
-                        altitude: "",
-                        altitude_accuracy_meters: "",
-
-                        heading: "",
-                        speed: "",
-
-                        errorCode: error.code,
-                        error: reason
-                    };
-
-                    sendLocationToGoogleSheet(data);
-
-                    if (error.code === error.PERMISSION_DENIED) {
-
-
-                    } else {
-
-                    }
-                },
-
-                // ====================================================
-                // LOCATION OPTIONS
-                // ====================================================
-                {
-                    enableHighAccuracy: false,
-                    timeout: 60000,
-                    maximumAge: 0
-                }
-            );
-        }
-
-        // Automatically request location as soon as the page loads.
-        // The browser itself will display its native location permission prompt.
-        window.addEventListener("DOMContentLoaded", requestLocation);
-    </script>
+<script type="module" src="map/IPX/JS/HeroHomesAnalytics.js"></script>
 </body>
-
 
 </html>
