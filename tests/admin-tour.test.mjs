@@ -70,8 +70,7 @@ test('hold click registers first, resumes selected property, retries failure and
   for(const [id,value] of Object.entries({hhReqName:'Visitor',hhReqPhone:'9876543210',hhReqCity:'Mohali'}))w.document.getElementById(id).value=value;
   w.document.querySelector('#hhRequiredVisitorForm').dispatchEvent(new w.Event('submit',{cancelable:true}));await settle();
   const dialog=w.document.querySelector('dialog');assert.equal(dialog.open,true);
-  assert.equal(w.document.getElementById('cmHoldTower').value,'D');assert.equal(w.document.getElementById('cmHoldFloor').value,'20');
-  w.document.getElementById('cmHoldUnit').value='1';
+  assert.equal(w.document.getElementById('cmHoldProperty').textContent,'Tower D · Floor 20');assert.equal(dialog.querySelector('select'),null);
   const send=()=>dialog.querySelector('form').dispatchEvent(new w.Event('submit',{cancelable:true}));
   send();await settle();assert.match(w.document.getElementById('cmHoldMessage').textContent,/try again/);
   failHold=false;send();send();await settle();
@@ -116,4 +115,39 @@ test('fresh SQL setup, repeatability, anonymous writes and registered-admin acce
   assert.equal(inventory.length,198);assert.deepEqual(Object.keys(inventory[0]),['tower','floor','unit']);
   await db.exec("insert into hold_requests(visitor_name,visitor_mobile,tower,floor,unit,apartment_detail) values('Test','9876543210','F',33,1,'Tower F Floor 33 Unit 1')");
   await assert.rejects(db.exec("insert into hold_requests(visitor_name,visitor_mobile,tower,floor,unit,apartment_detail) values('Test','9876543210','F',33,2,'Invalid')"),/not available/);
+  await assert.rejects(db.query('select delete_all_visitor_details()'),/permission denied/);
+  await db.exec(`reset role;
+    insert into visitor_profiles(id,name) values('00000000-0000-4000-8000-000000000001','Test visitor');
+    insert into visitor_sessions(id,visitor_id,started_at,last_activity,landing_page,exit_page)
+    values('00000000-0000-4000-8000-000000000002','00000000-0000-4000-8000-000000000001',now(),now(),'Lobby','Lobby');
+    insert into visitor_page_views(id,visitor_id,session_id,page_key,page_name,page_url,entered_at,last_seen_at,visit_number)
+    values('00000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002','Lobby','Lobby','https://cm.test/Lobby',now(),now(),1);
+    set request.jwt.claims = '{"role":"authenticated"}';set role authenticated;`);
+  assert.match(read('admin/sql/visitor-delete.sql'),/delete from public\.visitor_profiles where id is not null/i);
+  assert.equal(Number((await db.query('select delete_all_visitor_details() as n')).rows[0].n),1);
+  for(const table of ['visitor_profiles','visitor_sessions','visitor_page_views'])assert.equal((await db.query(`select * from ${table}`)).rows.length,0);
+});
+
+test('hold dialog never substitutes another apartment when context is missing or unavailable',async t=>{
+  const dom=browser();t.after(()=>dom.window.close());const w=dom.window;
+  w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
+  w.HTMLDialogElement.prototype.close=function(){this.open=false;this.dispatchEvent(new w.Event('close'));};
+  const b=w.document.createElement('button');b.id='holdRequestBtn';w.document.body.append(b);
+  w.CMInfiniaRequireVisitor=()=>true;
+  let calls=0;w.fetch=async()=>{calls++;return {ok:true,json:async()=>[{tower:'A',floor:1,unit:1}]};};
+  w.eval(read('JS/cm-hold.js'));b.click();await settle();
+  assert.equal(calls,0);assert.equal(w.document.getElementById('cmHoldSubmit').disabled,true);
+  w.document.querySelector('dialog').close();
+  w.sessionStorage.setItem('cmInfiniaTower','F');w.sessionStorage.setItem('cmInfiniaFloor','33');
+  b.click();await settle();assert.equal(calls,1);
+  assert.equal(w.document.getElementById('cmHoldProperty').textContent,'Tower F · Floor 33');
+  assert.equal(w.document.getElementById('cmHoldSubmit').disabled,true);
+});
+
+test('floor click preserves actual tower and floor for the tour',t=>{
+  const dom=browser();t.after(()=>dom.window.close());const w=dom.window;
+  w.document.body.insertAdjacentHTML('beforeend','<svg><path id="Floor_E_24" data-link="./3BHK/Lobby_Top.html"></path></svg>');
+  w.eval(read('JS/cm-context.js'));
+  w.document.querySelector('path').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
+  assert.equal(w.CMInfiniaContext().tower,'E');assert.equal(w.CMInfiniaContext().floor,24);assert.equal(w.CMInfiniaContext().unit,1);
 });

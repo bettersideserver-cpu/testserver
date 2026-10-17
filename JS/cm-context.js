@@ -7,7 +7,7 @@
     try {
       sessionStorage.setItem('cmInfiniaTower', match[1].toUpperCase());
       sessionStorage.setItem('cmInfiniaFloor', match[2]);
-      sessionStorage.removeItem('cmInfiniaUnit');
+      sessionStorage.setItem('cmInfiniaUnit', '1');
     } catch { /* Navigation remains available when storage is restricted. */ }
   }, true);
 })();

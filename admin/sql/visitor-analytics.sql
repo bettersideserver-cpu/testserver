@@ -216,7 +216,7 @@ create or replace function public.delete_all_visitor_details()
 returns bigint language plpgsql security invoker set search_path = '' as $$
 declare deleted_count bigint;
 begin
-  delete from public.visitor_profiles;
+  delete from public.visitor_profiles where id is not null;
   get diagnostics deleted_count = row_count;
   return deleted_count;
 end;

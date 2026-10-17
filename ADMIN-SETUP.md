@@ -26,6 +26,10 @@ The admin is at `admin.html`. Serve the site over HTTP/HTTPS; ES modules do not 
 
 ## Remaining configuration
 
-Live login, registration and analytics require the project URL/key and SQL above. IP geolocation is disabled by default; this installation records browsing sessions without claiming to capture IP addresses. All seven 3BHK 360 pages have Request to Hold. Visitors register first, then choose an available apartment in the hold dialog. Selected tower/floor context is prefilled when available. A successful submission creates a Pending hold request with visitor and apartment details. It does not automatically reserve the apartment or change inventory status. Public inventory overlays are unchanged.
+Live login, registration and analytics require the project URL/key and SQL above. IP geolocation is disabled by default; this installation records browsing sessions without claiming to capture IP addresses. All seven 3BHK 360 pages have Request to Hold. Visitors register first, then confirm the apartment they arrived from. The hold dialog remembers the selected tower/floor and has no apartment picker. Missing context or an unavailable apartment blocks submission instead of substituting another property. A successful submission creates a Pending hold request with visitor and apartment details. It does not automatically reserve the apartment or change inventory status. Public inventory overlays are unchanged.
 
 See `admin/VISITOR-DETAILS.md` for dashboard usage.
+
+## Bulk visitor deletion fix
+
+If Delete All Visitor Details reports `DELETE requires a WHERE clause`, run the updated `admin/sql/visitor-delete.sql` in Supabase. The function now uses `WHERE id IS NOT NULL`, retains admin row-level security, and cascades deletion to sessions and page history. Registration records in Visitors are separate.
