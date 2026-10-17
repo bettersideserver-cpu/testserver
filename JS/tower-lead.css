@@ -1,0 +1,121 @@
+.tower-lead-dialog {
+    width: min(440px, calc(100vw - 32px));
+    max-height: min(90vh, 740px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 20px;
+    background: #fff;
+    color: #172433;
+    box-shadow: 0 24px 80px rgba(0, 20, 39, .32);
+    font-family: Poppins, Arial, sans-serif;
+}
+
+.tower-lead-dialog::backdrop {
+    background: rgba(3, 20, 34, .58);
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+}
+
+.tower-lead-dialog * { box-sizing: border-box; }
+
+.tower-lead-content { padding: 30px; }
+
+.tower-lead-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.tower-lead-kicker {
+    margin: 0 0 8px;
+    color: #0078be;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.tower-lead-title {
+    margin: 0;
+    font-size: clamp(22px, 5vw, 28px);
+    line-height: 1.25;
+}
+
+.tower-lead-close {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: #eef3f6;
+    color: #172433;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.tower-lead-intro {
+    margin: 12px 0 22px;
+    color: #53616c;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.tower-lead-field { display: block; margin: 0 0 15px; }
+
+.tower-lead-field span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tower-lead-field input {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid #cbd4dc;
+    border-radius: 8px;
+    background: #fff;
+    color: #172433;
+    font: inherit;
+    font-size: 14px;
+}
+
+.tower-lead-field input:focus {
+    border-color: #0078be;
+    outline: 2px solid rgba(0, 120, 190, .18);
+}
+
+.tower-lead-submit {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 6px;
+    border: 0;
+    border-radius: 8px;
+    background: #0078be;
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.tower-lead-submit:hover { background: #00639c; }
+.tower-lead-submit:disabled { cursor: wait; opacity: .7; }
+
+.tower-lead-error {
+    min-height: 0;
+    margin: 10px 0 0;
+    color: #aa2b2b;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.tower-lead-error:empty { display: none; }
+
+@media (max-width: 480px) {
+    .tower-lead-content { padding: 24px 20px; }
+}
