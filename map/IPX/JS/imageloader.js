@@ -35,6 +35,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         player.loop = false;
         player.removeAttribute('loop');
         player.muted = true;
+        player.defaultMuted = true;
+        player.playsInline = true;
     });
     const syncSize = () => {
         players.forEach(player => {
@@ -74,8 +76,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     async function playFrame(player) {
         // Register before play so even a very short clip supplies a first frame.
         let callback;
+        let timer;
+        let finish;
         const presented = 'requestVideoFrameCallback' in player
-            ? new Promise(resolve => { callback = player.requestVideoFrameCallback(resolve); })
+            ? new Promise(resolve => {
+                finish = () => { clearTimeout(timer); resolve(); };
+                callback = player.requestVideoFrameCallback(finish);
+            })
             : null;
         try {
             await player.play();
@@ -83,7 +90,20 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (callback !== undefined) player.cancelVideoFrameCallback(callback);
             throw error;
         }
-        if (presented) await presented;
+        if (presented) {
+            // Some mobile browsers suppress frame callbacks for a transparent
+            // layer. play() plus HAVE_CURRENT_DATA also confirms decoded data.
+            const checkDecoded = () => {
+                if (failed || (!player.paused && player.readyState >= 2)) {
+                    player.cancelVideoFrameCallback(callback);
+                    finish();
+                } else {
+                    timer = setTimeout(checkDecoded, 100);
+                }
+            };
+            timer = setTimeout(checkDecoded, 100);
+            await presented;
+        }
         else await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     }
 
@@ -120,7 +140,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         } else if (!starting && Number.isFinite(active.duration)
             && active.duration > 0 && active.duration - active.currentTime <= blendDuration
-            && incoming.readyState >= 2 && !incoming.seeking) {
+            && !incoming.seeking) {
             // If decoding is late, retain the last outgoing frame instead of
             // performing a hard native loop or exposing an empty frame.
             beginBlend();
@@ -145,7 +165,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // A Blob guarantees the complete download; canplaythrough is only an estimate.
-        const response = await fetch(video.dataset.video);
+        const mobile = window.matchMedia?.('(max-width: 768px), (pointer: coarse)').matches;
+        const supportsHEVC = video.canPlayType?.('video/mp4; codecs="hvc1"');
+        const source = video.dataset.videoMobile && (mobile || supportsHEVC === '')
+            ? video.dataset.videoMobile : video.dataset.video;
+        const response = await fetch(source);
         if (!response.ok) throw new Error('Scene video unavailable');
         const blob = await response.blob();
         objectURL = URL.createObjectURL(blob);
