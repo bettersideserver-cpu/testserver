@@ -1,0 +1,45 @@
+.tower-view-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--hair, rgba(10, 43, 33, 0.14));
+    border-radius: 999px;
+    background: var(--surface-1, #F4EDDD);
+    color: var(--ink, #0A2B21);
+    box-shadow: 0 4px 16px rgba(10, 43, 33, 0.10);
+    font: 500 13px var(--font-ui, sans-serif);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.tower-view-button--left { left: 20px; }
+.tower-view-button--right { right: 20px; }
+
+.tower-view-button:hover {
+    background: var(--gold, #0F3D2E);
+    color: var(--on-accent, #FBF7EC);
+}
+
+.tower-view-button:focus-visible {
+    outline: 3px solid var(--brass, #C39E59);
+    outline-offset: 4px;
+}
+
+.tower-view-button svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .tower-view-button { padding: 0 10px; gap: 4px; font-size: 11px; }
+    .tower-view-button--left { left: 8px; }
+    .tower-view-button--right { right: 8px; }
+}
